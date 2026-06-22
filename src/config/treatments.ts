@@ -88,6 +88,8 @@ export interface TreatmentConfig {
     badgeText: string;
     emotionalClose?: { text: string; highlight: string };
   };
+  /** Acuity intake fields collected by Sofia's booking form. Omit to disable Sofia booking for this treatment. */
+  intakeFields?: IntakeField[];
 }
 
 export const LED_TREATMENT: TreatmentConfig = {
