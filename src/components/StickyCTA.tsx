@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTreatment } from "@/context/TreatmentContext";
 import { Events, track } from "@/lib/analytics";
+import { DEFAULT_ACUITY_APPOINTMENT_TYPE_ID } from "@/config/acuity";
 
 interface StickyCTAProps {
   onBookingClick: () => void;
