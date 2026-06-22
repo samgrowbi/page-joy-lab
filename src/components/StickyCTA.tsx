@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "motion/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useTreatment } from "@/context/TreatmentContext";
 import { Events, track } from "@/lib/analytics";
+import { DEFAULT_ACUITY_APPOINTMENT_TYPE_ID } from "@/config/acuity";
 
 interface StickyCTAProps {
   onBookingClick: () => void;
@@ -15,7 +16,7 @@ export function StickyCTA({ onBookingClick }: StickyCTAProps) {
   const queryClient = useQueryClient();
   const treatment = useTreatment();
   const savings = (parseFloat(treatment.originalPrice) - parseFloat(treatment.price)).toFixed(0);
-  const appointmentTypeID = treatment.appointmentTypeId || "92667128";
+  const appointmentTypeID = treatment.appointmentTypeId || DEFAULT_ACUITY_APPOINTMENT_TYPE_ID;
 
   const prefetchBookingData = () => {
     const now = new Date();

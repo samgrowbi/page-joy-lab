@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { 
+  DEFAULT_ACUITY_APPOINTMENT_TYPE_ID,
   DEFAULT_ACUITY_TIMEZONE,
   TREATMENT_IMAGE, 
 } from "@/config/acuity";
@@ -102,7 +103,7 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
         email: formData.email || null,
         phone: formData.phone ? `+1${formData.phone}` : null,
         treatment_slug: treatmentConfig?.slug || null,
-        appointment_type_id: String(treatmentConfig?.appointmentTypeId || "92667128"),
+        appointment_type_id: String(treatmentConfig?.appointmentTypeId || DEFAULT_ACUITY_APPOINTMENT_TYPE_ID),
         selected_datetime: selectedTime || null,
         status: "started",
         user_agent: typeof navigator !== "undefined" ? navigator.userAgent : null,
@@ -147,7 +148,7 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
     });
   }, [currentStep, treatmentConfig?.slug]);
 
-  const appointmentTypeID = treatmentConfig?.appointmentTypeId || "92667128";
+  const appointmentTypeID = treatmentConfig?.appointmentTypeId || DEFAULT_ACUITY_APPOINTMENT_TYPE_ID;
   const calendarID = treatmentConfig?.calendarId || "14022057";
 
   const filterIntakeForms = (forms: IntakeForm[]) =>
