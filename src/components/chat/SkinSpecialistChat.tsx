@@ -214,7 +214,7 @@ function ChatWindow({
         <div className="flex-1 min-w-0 leading-tight">
           <div className="font-medium text-[15px]">Sofia · Skin Specialist</div>
           <div className="text-[11px] opacity-90 flex items-center gap-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Online now · GLO+ clinic
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Online now · Pearl Med Spa clinic
           </div>
         </div>
         <button
