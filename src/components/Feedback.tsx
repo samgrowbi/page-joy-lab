@@ -142,7 +142,7 @@ function TestimonialCard({ item, isPlaying, onPlay, onPause }: TestimonialCardPr
         className="relative group cursor-pointer overflow-hidden rounded-3xl aspect-[9/14] shadow-xl bg-gray-100"
         onClick={togglePlay}
       >
-        {/* Poster image — Cloudflare Stream auto thumbnail (instant LCP, no video bytes) */}
+        {/* Poster image - Cloudflare Stream auto thumbnail (instant LCP, no video bytes) */}
         {!hasLoaded && item.poster && (
           <img
             src={item.poster}

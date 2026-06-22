@@ -16,13 +16,13 @@ export function About({ onBookingClick }: AboutProps) {
 
   return (
     <section id="about" className="py-4 md:py-8 lg:py-16 bg-white relative overflow-hidden" dir="ltr">
-      {/* Subtle background — muted rose instead of pink */}
+      {/* Subtle background - muted rose instead of pink */}
       <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-rose-50/40 via-transparent to-transparent pointer-events-none" />
 
       <div className="container mx-auto px-5 relative z-10">
         <div className="flex flex-col lg:flex-row items-stretch gap-10 lg:gap-16 relative">
 
-          {/* Video Section — Desktop Only, height driven by text */}
+          {/* Video Section - Desktop Only, height driven by text */}
           <div className="hidden lg:block w-full lg:w-1/2 relative self-stretch">
             <div className="absolute inset-0 rounded-2xl overflow-hidden shadow-xl shadow-rose-100/50 border border-rose-100/60 group">
               <img
@@ -35,7 +35,7 @@ export function About({ onBookingClick }: AboutProps) {
             </div>
           </div>
 
-          {/* Content Section — tighter width */}
+          {/* Content Section - tighter width */}
           <div className="w-full lg:w-1/2 flex flex-col gap-6 lg:gap-10 lg:justify-center">
             <div>
               <p className="text-[18px] lg:text-base font-bold text-gray-400 tracking-wide uppercase mb-1 lg:mb-3">Who We Are</p>
@@ -50,7 +50,7 @@ export function About({ onBookingClick }: AboutProps) {
               </div>
             </div>
 
-            {/* Video Section — Mobile Only */}
+            {/* Video Section - Mobile Only */}
             <div className="block lg:hidden w-full relative">
               <div className="relative rounded-2xl overflow-hidden shadow-xl shadow-rose-100/50 border border-rose-100/60 group">
                 <img

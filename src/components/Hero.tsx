@@ -128,7 +128,7 @@ export function Hero({ onBookingClick }: HeroProps) {
         <div className="absolute inset-0 bg-gradient-to-r from-gray-950/90 via-black/20 to-gray-950/80 motion-safe:animate-ken-burns" />
       </div>
 
-      {/* Content — left-aligned reverse pyramid */}
+      {/* Content - left-aligned reverse pyramid */}
       <div className="z-10 container mx-auto px-5 py-12 lg:py-16" dir="ltr">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -141,7 +141,7 @@ export function Hero({ onBookingClick }: HeroProps) {
             Look Years <AccentWord>Younger</AccentWord>
           </h1>
 
-          {/* H2 — rotating value props */}
+          {/* H2 - rotating value props */}
           <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-sans font-light text-white/90 leading-snug mt-3 sm:mt-5 lg:mt-6 w-full">
             <RotatingText
               messages={[
@@ -152,12 +152,12 @@ export function Hero({ onBookingClick }: HeroProps) {
             />
           </h2>
 
-          {/* H3 — single inline row on mobile, single line on desktop */}
+          {/* H3 - single inline row on mobile, single line on desktop */}
           <p className="mt-3 sm:mt-4 text-[12px] sm:text-sm lg:text-base xl:text-lg font-bold uppercase tracking-[0.14em] sm:tracking-[0.18em] text-pink-400">
             No Surgery <span className="text-pink-400/60 mx-1.5">·</span> No Pain <span className="text-pink-400/60 mx-1.5">·</span> Zero Downtime
           </p>
 
-          {/* Price — centered with CTA, diagonal strikethrough */}
+          {/* Price - centered with CTA, diagonal strikethrough */}
           <div className="inline-flex flex-col items-center mt-5 sm:mt-10" dir="ltr">
             <div className="flex items-baseline gap-2.5 lg:gap-3">
               <motion.span

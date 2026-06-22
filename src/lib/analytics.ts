@@ -11,7 +11,7 @@ export function identify(_distinctId: string, _props?: Props) {
   // no-op
 }
 
-// Canonical event names — keep in one place so dashboards match.
+// Canonical event names - keep in one place so dashboards match.
 export const Events = {
   BookCtaClicked: "book_cta_clicked",
   BookingStepViewed: "booking_step_viewed",
