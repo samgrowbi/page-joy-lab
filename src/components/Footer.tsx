@@ -29,7 +29,7 @@ export function Footer() {
                 alt={BRAND_NAME}
                 loading="lazy"
                 decoding="async"
-                className="h-[90px] w-auto bg-white rounded p-2"
+                className="h-[90px] w-auto bg-white rounded p-2 mb-6"
               />
             </a>
             <p className="text-gray-400 text-base lg:text-lg xl:text-xl mb-8">{BRAND_TAGLINE}</p>
