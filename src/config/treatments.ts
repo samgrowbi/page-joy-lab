@@ -124,7 +124,7 @@ export const LED_TREATMENT: TreatmentConfig = {
     {
       question: "Can I combine this with other treatments?",
       answer:
-        "Yes. Our Instant Lift & Skin Tightening is compatible with a range of other aesthetic services. Your esthetician will be happy to discuss what works best alongside this session during your first visit.",
+        "Yes. Our Non Surgical Face & Neck Lift Treatment is compatible with a range of other aesthetic services. Your esthetician will be happy to discuss what works best alongside this session during your first visit.",
     },
     {
       question: "When will I see results?",
