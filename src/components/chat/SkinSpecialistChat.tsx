@@ -174,7 +174,7 @@ function ChatWindow({
     [sessionId],
   );
 
-  const { messages, sendMessage, status, error } = useChat({
+  const { messages, sendMessage, status, error, stop, regenerate } = useChat({
     id: sessionId,
     messages: initialMessages,
     transport,
@@ -184,7 +184,23 @@ function ChatWindow({
   const [submittedForms, setSubmittedForms] = useState<Set<string>>(new Set());
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  // Only "submitted" / "streaming" should disable input. "error" must re-enable
+  // it so the visitor can retry instead of being stuck.
   const isLoading = status === "submitted" || status === "streaming";
+
+  // Safety net: if the stream stalls (no status change for 45s while still
+  // marked streaming) abort it so the textarea recovers.
+  useEffect(() => {
+    if (!isLoading) return;
+    const t = setTimeout(() => {
+      try {
+        stop();
+      } catch {
+        /* noop */
+      }
+    }, 45000);
+    return () => clearTimeout(t);
+  }, [isLoading, messages.length, stop]);
 
   useEffect(() => {
     const el = scrollRef.current;
@@ -288,8 +304,15 @@ function ChatWindow({
         ))}
         {isLoading && <TypingIndicator />}
         {error && (
-          <div className="text-xs text-red-600 px-3 py-2 bg-red-50 rounded-lg">
-            Sorry, something went wrong. Please try again in a moment.
+          <div className="flex items-center justify-between gap-3 text-xs text-red-700 px-3 py-2 bg-red-50 border border-red-100 rounded-lg">
+            <span>Connection hiccup. Tap retry to continue.</span>
+            <button
+              type="button"
+              onClick={() => regenerate()}
+              className="px-2 py-1 rounded-md bg-red-100 hover:bg-red-200 font-medium"
+            >
+              Retry
+            </button>
           </div>
         )}
       </div>
