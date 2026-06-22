@@ -25,7 +25,7 @@ const WELCOME_MESSAGE: UIMessage = {
     {
       type: "text",
       text:
-        "Hi, I'm Sofia one of the skin specialists at the GLO+ clinic. I'm here to help you find the right treatment for your skin and book your spot, right inside this chat.\n\nWhat's bothering you most about your skin lately?",
+        "Hi, I'm Sofia one of the skin specialists at the Pearl Med Spa clinic. I'm here to help you find the right treatment for your skin and book your spot, right inside this chat.\n\nWhat's bothering you most about your skin lately?",
     },
   ],
 };
