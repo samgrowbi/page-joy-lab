@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import { useQuery, useMutation } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { 
+  DEFAULT_ACUITY_APPOINTMENT_TYPE_ID,
   DEFAULT_ACUITY_TIMEZONE,
   TREATMENT_IMAGE, 
 } from "@/config/acuity";
