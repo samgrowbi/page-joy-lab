@@ -96,7 +96,7 @@ async function sendPurchaseToMeta(value: string, email: string | null, phone: st
         action_source: "physical_store",
         user_data,
         custom_data: {
-          currency: "USD",
+          currency: "CAD",
           value,
         },
       },
