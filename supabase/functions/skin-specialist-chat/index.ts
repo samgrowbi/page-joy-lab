@@ -473,32 +473,19 @@ Deno.serve(async (req) => {
       return out;
     };
 
-    const humanTypingTransform = () => () =>
+    // Lightweight synchronous sanitizer transform. No artificial delays —
+    // those were keeping the isolate alive past the edge wall-clock and
+    // causing the stream to hang half-open on multi-turn replies.
+    const sanitizeTransform = () => () =>
       new TransformStream({
-        async transform(chunk, controller) {
+        transform(chunk, controller) {
           if (chunk.type !== "text-delta" || !chunk.text) {
             controller.enqueue(chunk);
             return;
           }
           const cleaned = sanitizeChunk(chunk.text);
           if (!cleaned) return;
-          const tokens = cleaned.match(/\S+\s*|\s+/g) ?? [cleaned];
-          for (const token of tokens) {
-            let delay = 12 + Math.floor(Math.random() * 22);
-            if (/[.!?]["')\]]?\s*$/.test(token)) {
-              delay += 140 + Math.floor(Math.random() * 180);
-            } else if (/[,;:]\s*$/.test(token)) {
-              delay += 50 + Math.floor(Math.random() * 80);
-            }
-            if (/\n\s*\n/.test(token)) {
-              delay += 200 + Math.floor(Math.random() * 250);
-            }
-            if (Math.random() < 0.03) {
-              delay += 80 + Math.floor(Math.random() * 160);
-            }
-            await new Promise((r) => setTimeout(r, delay));
-            controller.enqueue({ ...chunk, text: token });
-          }
+          controller.enqueue({ ...chunk, text: cleaned });
         },
       });
 
@@ -508,7 +495,7 @@ Deno.serve(async (req) => {
       messages: convertToModelMessages(messages),
       tools,
       stopWhen: stepCountIs(50),
-      experimental_transform: humanTypingTransform(),
+      experimental_transform: sanitizeTransform(),
     });
 
     return result.toUIMessageStreamResponse({
