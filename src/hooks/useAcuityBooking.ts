@@ -148,7 +148,7 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
     });
   }, [currentStep, treatmentConfig?.slug]);
 
-  const appointmentTypeID = treatmentConfig?.appointmentTypeId || "92667128";
+  const appointmentTypeID = treatmentConfig?.appointmentTypeId || DEFAULT_ACUITY_APPOINTMENT_TYPE_ID;
   const calendarID = treatmentConfig?.calendarId || "14022057";
 
   const filterIntakeForms = (forms: IntakeForm[]) =>
