@@ -174,7 +174,7 @@ function ChatWindow({
     [sessionId],
   );
 
-  const { messages, sendMessage, status, error } = useChat({
+  const { messages, sendMessage, status, error, stop, regenerate } = useChat({
     id: sessionId,
     messages: initialMessages,
     transport,
@@ -184,7 +184,23 @@ function ChatWindow({
   const [submittedForms, setSubmittedForms] = useState<Set<string>>(new Set());
   const scrollRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLTextAreaElement>(null);
+  // Only "submitted" / "streaming" should disable input. "error" must re-enable
+  // it so the visitor can retry instead of being stuck.
   const isLoading = status === "submitted" || status === "streaming";
+
+  // Safety net: if the stream stalls (no status change for 45s while still
+  // marked streaming) abort it so the textarea recovers.
+  useEffect(() => {
+    if (!isLoading) return;
+    const t = setTimeout(() => {
+      try {
+        stop();
+      } catch {
+        /* noop */
+      }
+    }, 45000);
+    return () => clearTimeout(t);
+  }, [isLoading, messages.length, stop]);
 
   useEffect(() => {
     const el = scrollRef.current;
