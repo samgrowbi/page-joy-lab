@@ -191,11 +191,12 @@ export function StackedVideos() {
                     if (el) videoRefs.current.set(video.id, el);
                   }}
                   src={video.url}
-                  autoPlay={isActive || activeVideoId === null}
+                  autoPlay={isActive}
                   loop
                   muted
                   playsInline
                   preload={isActive ? "metadata" : "none"}
+                  poster="data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%209%2016%22%3E%3Crect%20width%3D%229%22%20height%3D%2216%22%20fill%3D%22%23111%22%2F%3E%3C%2Fsvg%3E"
                   className="w-full h-full object-cover"
                 />
               </motion.div>
