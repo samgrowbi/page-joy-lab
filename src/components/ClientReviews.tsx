@@ -15,7 +15,7 @@ const defaultReviews = [
     id: 1,
     name: "Isabella Rodriguez",
     image: "https://randomuser.me/api/portraits/women/44.jpg",
-    timeAgo: "MAY 15, 2026",
+    timeAgo: "JUN 18, 2026",
     rating: 5,
     review: "Ok so I almost didn't book because I've been burned before by fancy places that overpromise. But my sister dragged me here and WOW. My skin literally looks like I got a filter installed on my face?? Already booked my next one lol."
   },
@@ -23,7 +23,7 @@ const defaultReviews = [
     id: 2,
     name: "Sarah Mitchell",
     image: "https://randomuser.me/api/portraits/women/68.jpg",
-    timeAgo: "MAY 20, 2026",
+    timeAgo: "MAY 28, 2026",
     rating: 5,
     review: "I'm not exaggerating when I say my husband did a double take when I got home. He thought I got filler or something. Nope, just the LED facial! My pores are smaller and my skin just looks... alive again. 10/10."
   },
@@ -31,7 +31,7 @@ const defaultReviews = [
     id: 3,
     name: "Gabriela Santos",
     image: "https://randomuser.me/api/portraits/women/33.jpg",
-    timeAgo: "MAY 5, 2026",
+    timeAgo: "JUN 3, 2026",
     rating: 5,
     review: "I was SO nervous going in because I have super sensitive skin and everything breaks me out. They actually listened to my concerns and customized everything. No redness, no irritation, just glow. I literally cried happy tears in my car after."
   },
@@ -39,7 +39,7 @@ const defaultReviews = [
     id: 4,
     name: "Amanda Rose",
     image: "https://randomuser.me/api/portraits/women/85.jpg",
-    timeAgo: "MAY 22, 2026",
+    timeAgo: "JUN 12, 2026",
     rating: 5,
     review: "Three sessions in and my coworkers keep asking if I changed my skincare routine. I just smile and say 'something like that' 😂 The dark spots on my cheeks are fading and I've stopped wearing foundation on weekdays. That's huge for me."
   },
@@ -47,7 +47,7 @@ const defaultReviews = [
     id: 5,
     name: "Carolina Herrera",
     image: "https://randomuser.me/api/portraits/women/91.jpg",
-    timeAgo: "MAY 18, 2026",
+    timeAgo: "MAY 30, 2026",
     rating: 5,
     review: "As a mom of 3 I never do anything for myself. This was my first 'me thing' in years and I ugly-cried on the way home because I forgot what it felt like to feel pretty. Already told all my mom friends. We're making it a monthly thing."
   },
@@ -55,7 +55,7 @@ const defaultReviews = [
     id: 6,
     name: "Rachel Johnson",
     image: "https://randomuser.me/api/portraits/women/26.jpg",
-    timeAgo: "MAY 10, 2026",
+    timeAgo: "JUN 20, 2026",
     rating: 5,
     review: "I've spent thousands on serums and creams over the years. One session here did more than all of that combined. I'm not even being dramatic. My texture is smoother and the fine lines around my eyes are way less noticeable."
   },
@@ -71,7 +71,7 @@ const defaultReviews = [
     id: 8,
     name: "Diana Miller",
     image: "https://randomuser.me/api/portraits/women/63.jpg",
-    timeAgo: "MAY 12, 2026",
+    timeAgo: "JUN 8, 2026",
     rating: 5,
     review: "The girl at the front desk remembered my name on my second visit. Small thing but it made me feel so welcome. Oh and my skin? GLOWING. My daughter said I look younger than her and I'm going to ride that high for at least a month 😂"
   },
@@ -79,7 +79,7 @@ const defaultReviews = [
     id: 9,
     name: "Sofia Morales",
     image: "https://randomuser.me/api/portraits/women/79.jpg",
-    timeAgo: "MAY 8, 2026",
+    timeAgo: "JUN 15, 2026",
     rating: 5,
     review: "Full transparency: I was the biggest skeptic. LED therapy sounded too good to be true. But here I am writing a 5-star review because my jawline looks tighter, my skin is clearer, and I went to brunch without makeup last Sunday. Enough said."
   },

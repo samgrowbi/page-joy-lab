@@ -76,9 +76,9 @@ export interface TreatmentConfig {
 
 export const LED_TREATMENT: TreatmentConfig = {
   slug: "led",
-  label: "Non-Surgical Face & Neck Lift Treatment",
+  label: "Non Surgical Face & Neck Lift Treatment",
   heroTitle: {
-    line1: "Non-Surgical",
+    line1: "Non Surgical",
     highlight: "Face & Neck Lift",
     line2: "Treatment",
   },
@@ -86,10 +86,10 @@ export const LED_TREATMENT: TreatmentConfig = {
     "No Surgery. No Pain. Zero Downtime.",
   heroVideoUrl:
     "https://pub-eb17aaa123fc4145b1ee4c15fc2e5771.r2.dev/Med%20Spa/Hero%20Video/LED%20Hero%20Video.mp4",
-  price: "69.99",
-  originalPrice: "249.99",
-  appointmentTypeId: "90990594",
-  calendarId: "13836448",
+  price: "79.99",
+  originalPrice: "149.99",
+  appointmentTypeId: "92667128",
+  calendarId: "14022057",
   duration: 60,
   image: treatmentImage,
   technologyDescription: [
@@ -281,14 +281,14 @@ export const BODY_SCULPTING_TREATMENT: TreatmentConfig = {
   ],
   aboutVideoUrl: "https://pub-eb17aaa123fc4145b1ee4c15fc2e5771.r2.dev/Med%20Spa/Body/lumiere%20new.mp4",
   clientReviews: [
-    { id: 1, name: "Jessica Taylor", image: "https://randomuser.me/api/portraits/women/45.jpg", timeAgo: "MAY 10, 2026", rating: 5, review: "I couldn't believe how much my abdomen changed after just a few sessions. My clothes fit so much better now!" },
-    { id: 2, name: "Monica Rivera", image: "https://randomuser.me/api/portraits/women/50.jpg", timeAgo: "MAY 18, 2026", rating: 5, review: "Finally got rid of the stubborn belly fat that wouldn't budge no matter how much I worked out. This treatment is a game changer." },
-    { id: 3, name: "Tanya Brooks", image: "https://randomuser.me/api/portraits/women/54.jpg", timeAgo: "MAY 5, 2026", rating: 5, review: "The cellulite on my thighs has reduced so much. I feel confident wearing shorts again for the first time in years." },
-    { id: 4, name: "Lauren Kim", image: "https://randomuser.me/api/portraits/women/38.jpg", timeAgo: "MAY 22, 2026", rating: 5, review: "I was skeptical about non-surgical body sculpting but the results speak for themselves. My waist is noticeably more contoured." },
-    { id: 5, name: "Angela Martinez", image: "https://randomuser.me/api/portraits/women/72.jpg", timeAgo: "MAY 14, 2026", rating: 5, review: "Love the muscle toning effect! My arms and abs feel firmer than they have in years. Zero downtime too." },
-    { id: 6, name: "Christine Davis", image: "https://randomuser.me/api/portraits/women/29.jpg", timeAgo: "MAY 8, 2026", rating: 5, review: "The staff made me feel so comfortable. The treatment was relaxing and the results have been incredible on my midsection." },
-    { id: 7, name: "Natalie Wong", image: "https://randomuser.me/api/portraits/women/82.jpg", timeAgo: "MAY 25, 2026", rating: 5, review: "After having kids, I thought I'd never get my body back. This treatment has been life-changing for my confidence!" },
-    { id: 8, name: "Brianna Foster", image: "https://randomuser.me/api/portraits/women/61.jpg", timeAgo: "MAY 20, 2026", rating: 5, review: "I've done three sessions and can already see a huge difference in my love handles. So worth it!" },
+    { id: 1, name: "Jessica Taylor", image: "https://randomuser.me/api/portraits/women/45.jpg", timeAgo: "JUN 19, 2026", rating: 5, review: "I couldn't believe how much my abdomen changed after just a few sessions. My clothes fit so much better now!" },
+    { id: 2, name: "Monica Rivera", image: "https://randomuser.me/api/portraits/women/50.jpg", timeAgo: "MAY 27, 2026", rating: 5, review: "Finally got rid of the stubborn belly fat that wouldn't budge no matter how much I worked out. This treatment is a game changer." },
+    { id: 3, name: "Tanya Brooks", image: "https://randomuser.me/api/portraits/women/54.jpg", timeAgo: "JUN 5, 2026", rating: 5, review: "The cellulite on my thighs has reduced so much. I feel confident wearing shorts again for the first time in years." },
+    { id: 4, name: "Lauren Kim", image: "https://randomuser.me/api/portraits/women/38.jpg", timeAgo: "JUN 14, 2026", rating: 5, review: "I was skeptical about non-surgical body sculpting but the results speak for themselves. My waist is noticeably more contoured." },
+    { id: 5, name: "Angela Martinez", image: "https://randomuser.me/api/portraits/women/72.jpg", timeAgo: "MAY 31, 2026", rating: 5, review: "Love the muscle toning effect! My arms and abs feel firmer than they have in years. Zero downtime too." },
+    { id: 6, name: "Christine Davis", image: "https://randomuser.me/api/portraits/women/29.jpg", timeAgo: "JUN 9, 2026", rating: 5, review: "The staff made me feel so comfortable. The treatment was relaxing and the results have been incredible on my midsection." },
+    { id: 7, name: "Natalie Wong", image: "https://randomuser.me/api/portraits/women/82.jpg", timeAgo: "JUN 2, 2026", rating: 5, review: "After having kids, I thought I'd never get my body back. This treatment has been life-changing for my confidence!" },
+    { id: 8, name: "Brianna Foster", image: "https://randomuser.me/api/portraits/women/61.jpg", timeAgo: "JUN 17, 2026", rating: 5, review: "I've done three sessions and can already see a huge difference in my love handles. So worth it!" },
   ],
   hideExpertOpinion: true,
   problemSolution: {
