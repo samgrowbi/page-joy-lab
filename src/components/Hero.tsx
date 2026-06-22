@@ -65,7 +65,10 @@ export function Hero({ onBookingClick }: HeroProps) {
         );
         if (!response.ok) throw new Error("Failed to fetch availability");
         const data = await response.json();
-        return data.map((d: { date: string }) => new Date(d.date));
+        return data.map((d: { date: string }) => {
+          const [y, m, day] = d.date.split("-").map(Number);
+          return new Date(y, m - 1, day);
+        });
       },
       staleTime: 5 * 60 * 1000,
     });
