@@ -93,7 +93,7 @@ export const LED_TREATMENT: TreatmentConfig = {
   duration: 60,
   image: treatmentImage,
   technologyDescription: [
-    "Our Non-Surgical Facelift treatment delivers specific wavelengths of light energy into the skin's deeper layers, activating the body's own natural healing process of collagen production and cellular repair. The facial is entirely non-invasive, without heat, injectables, or foreign substances.",
+    "Our Non Surgical Face & Neck Lift Treatment delivers specific wavelengths of light energy into the skin's deeper layers, activating the body's own natural healing process of collagen production and cellular repair. The facial is entirely non-invasive, without heat, injectables, or foreign substances.",
   ],
   technologyHighlights: [
     { text: "Clinically tested" },
@@ -104,12 +104,12 @@ export const LED_TREATMENT: TreatmentConfig = {
     {
       question: "Who is this treatment for?",
       answer:
-        "The treatment is suitable for anyone over 35 experiencing visible signs of skin aging, such as fine lines, loss of firmness, uneven skin tone, or a tired-looking complexion. Compared to surgical treatments and injectables, our Non-surgical Lift & Skin Tightening Facial treatment is safer, more affordable, requires no downtime, and delivers completely natural-looking results.",
+        "The treatment is suitable for anyone over 35 experiencing visible signs of skin aging, such as fine lines, loss of firmness, uneven skin tone, or a tired-looking complexion. Compared to surgical treatments and injectables, our Non Surgical Face & Neck Lift Treatment is safer, more affordable, requires no downtime, and delivers completely natural-looking results.",
     },
     {
       question: "How does it work?",
       answer:
-        "Our Instant Lift & Skin Tightening Facial uses specific wavelengths of light energy to penetrate deep into the skin's layers, activating collagen production and cellular repair. The result is visibly smoother skin, restored firmness, and improved tone and texture.",
+        "Our Non Surgical Face & Neck Lift Treatment uses specific wavelengths of light energy to penetrate deep into the skin's layers, activating collagen production and cellular repair. The result is visibly smoother skin, restored firmness, and improved tone and texture.",
     },
     {
       question: "Is it painful?",
@@ -124,7 +124,7 @@ export const LED_TREATMENT: TreatmentConfig = {
     {
       question: "Can I combine this with other treatments?",
       answer:
-        "Yes. Our Instant Lift & Skin Tightening is compatible with a range of other aesthetic services. Your esthetician will be happy to discuss what works best alongside this session during your first visit.",
+        "Yes. Our Non Surgical Face & Neck Lift Treatment is compatible with a range of other aesthetic services. Your esthetician will be happy to discuss what works best alongside this session during your first visit.",
     },
     {
       question: "When will I see results?",
