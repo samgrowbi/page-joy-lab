@@ -44,8 +44,8 @@ export function Hero({ onBookingClick }: HeroProps) {
     };
   }, []);
 
-  const appointmentTypeID = treatment.appointmentTypeId || "92667128";
-  const calendarID = treatment.calendarId || "14022057";
+  const appointmentTypeID = treatment.appointmentTypeId || DEFAULT_ACUITY_APPOINTMENT_TYPE_ID;
+  const calendarID = treatment.calendarId || DEFAULT_ACUITY_CALENDAR_ID;
 
   const prefetchBookingData = () => {
     const now = new Date();
