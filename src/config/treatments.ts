@@ -104,12 +104,12 @@ export const LED_TREATMENT: TreatmentConfig = {
     {
       question: "Who is this treatment for?",
       answer:
-        "The treatment is suitable for anyone over 35 experiencing visible signs of skin aging, such as fine lines, loss of firmness, uneven skin tone, or a tired-looking complexion. Compared to surgical treatments and injectables, our Non-surgical Lift & Skin Tightening Facial treatment is safer, more affordable, requires no downtime, and delivers completely natural-looking results.",
+        "The treatment is suitable for anyone over 35 experiencing visible signs of skin aging, such as fine lines, loss of firmness, uneven skin tone, or a tired-looking complexion. Compared to surgical treatments and injectables, our Non Surgical Face & Neck Lift Treatment is safer, more affordable, requires no downtime, and delivers completely natural-looking results.",
     },
     {
       question: "How does it work?",
       answer:
-        "Our Instant Lift & Skin Tightening Facial uses specific wavelengths of light energy to penetrate deep into the skin's layers, activating collagen production and cellular repair. The result is visibly smoother skin, restored firmness, and improved tone and texture.",
+        "Our Non Surgical Face & Neck Lift Treatment uses specific wavelengths of light energy to penetrate deep into the skin's layers, activating collagen production and cellular repair. The result is visibly smoother skin, restored firmness, and improved tone and texture.",
     },
     {
       question: "Is it painful?",
