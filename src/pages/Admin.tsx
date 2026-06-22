@@ -40,7 +40,7 @@ export default function Admin() {
   const [loadingMsgs, setLoadingMsgs] = useState(false);
 
   useEffect(() => {
-    document.title = `${"Pearl Med Spa"} | Admin Conversations`;
+    document.title = "Pearl Med Spa | Admin Conversations";
   }, []);
 
   useEffect(() => {
