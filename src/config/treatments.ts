@@ -35,7 +35,7 @@ export interface TreatmentConfig {
   /** Acuity IDs */
   appointmentTypeId: string;
   calendarId: string;
-  /** Duration in minutes (display only – Acuity controls actual duration) */
+  /** Duration in minutes (display only - Acuity controls actual duration) */
   duration: number;
   /** Treatment image */
   image: string;
@@ -49,13 +49,13 @@ export interface TreatmentConfig {
   hideDeviceImage?: boolean;
   /** FAQ entries */
   faqs: { question: string; answer: string }[];
-  /** Before/after results – if provided, overrides the default facial results */
+  /** Before/after results - if provided, overrides the default facial results */
   beforeAfterResults?: BeforeAfterResult[];
-  /** Video testimonials – if provided, overrides the default feedback videos */
+  /** Video testimonials - if provided, overrides the default feedback videos */
   feedbackTestimonials?: { id: number; name: string; video: string; poster?: string; text: string }[];
-  /** Visit steps – if provided, overrides default steps */
+  /** Visit steps - if provided, overrides default steps */
   visitSteps?: { title: string; description: string; image?: string }[];
-  /** Client text reviews – if provided, overrides default facial reviews */
+  /** Client text reviews - if provided, overrides default facial reviews */
   clientReviews?: { id: number; name: string; image: string; timeAgo: string; rating: number; review: string }[];
   /** About section video URL override */
   aboutVideoUrl?: string;

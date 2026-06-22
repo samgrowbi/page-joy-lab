@@ -44,7 +44,7 @@ export function ProblemSolution() {
 
         {/* Desktop: 2-col | Mobile: benefits first, then paragraph */}
         <div className="flex flex-col-reverse md:grid md:grid-cols-2 gap-10 md:gap-16 items-start">
-          {/* Left – Problem Copy + Bridge Line */}
+          {/* Left - Problem Copy + Bridge Line */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -59,7 +59,7 @@ export function ProblemSolution() {
             </p>
           </motion.div>
 
-          {/* Right – Benefit Cards (no icons) */}
+          {/* Right - Benefit Cards (no icons) */}
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
