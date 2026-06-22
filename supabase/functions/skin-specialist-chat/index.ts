@@ -441,10 +441,10 @@ Deno.serve(async (req) => {
       }),
     };
 
-    // Human-feel: short "thinking" delay before streaming begins (0.6s - 1.6s).
-    await new Promise((r) =>
-      setTimeout(r, 600 + Math.floor(Math.random() * 1000)),
-    );
+    // (Removed: pre-stream "thinking" delay — it kept the isolate alive
+    // before any bytes flushed and contributed to hung streams.)
+
+
 
     // Sanitize robotic / AI-tell phrases & punctuation.
     const sanitizeChunk = (text: string): string => {
