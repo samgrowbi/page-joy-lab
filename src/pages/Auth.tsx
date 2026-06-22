@@ -53,7 +53,7 @@ export default function Auth() {
   };
 
   useEffect(() => {
-    document.title = "GLO+ | Admin Sign In";
+    document.title = "Pearl Med Spa | Admin Sign In";
   }, []);
 
   return (

@@ -3,7 +3,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
-const META_PIXEL_ID = "954258890721709";
+const META_PIXEL_ID = "1736523177800295";
 const META_API_VERSION = "v20.0";
 
 async function hashData(data: string): Promise<string> {
@@ -84,7 +84,7 @@ async function sendToMeta(eventData: {
   if (eventData.phone) userData.ph = await hashData(normalizePhone(eventData.phone));
   if (eventData.firstName) userData.fn = await hashData(eventData.firstName);
   if (eventData.lastName) userData.ln = await hashData(eventData.lastName);
-  userData.country = await hashData("us");
+  userData.country = await hashData("ca");
 
   const eventPayload = {
     data: [
@@ -97,7 +97,7 @@ async function sendToMeta(eventData: {
         custom_data: {
           appointment_id: eventData.appointmentId,
           conversion_type: "checked_in",
-          currency: "USD",
+          currency: "CAD",
           value: parseFloat(eventData.price || "0") || 0
         }
       }

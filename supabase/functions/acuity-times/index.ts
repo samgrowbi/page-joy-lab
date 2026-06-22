@@ -13,7 +13,7 @@ serve(async (req) => {
   try {
     const url = new URL(req.url);
     const date = url.searchParams.get('date');
-    const appointmentTypeID = url.searchParams.get('appointmentTypeID') || '93509464';
+    const appointmentTypeID = url.searchParams.get('appointmentTypeID') || '92667128';
     const calendarID = url.searchParams.get('calendarID'); // Optional - let Acuity auto-select if not provided
 
     if (!date) {

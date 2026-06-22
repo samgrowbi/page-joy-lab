@@ -15,7 +15,7 @@ export function StickyCTA({ onBookingClick }: StickyCTAProps) {
   const queryClient = useQueryClient();
   const treatment = useTreatment();
   const savings = (parseFloat(treatment.originalPrice) - parseFloat(treatment.price)).toFixed(0);
-  const appointmentTypeID = treatment.appointmentTypeId || "93509464";
+  const appointmentTypeID = treatment.appointmentTypeId || "92667128";
 
   const prefetchBookingData = () => {
     const now = new Date();
@@ -37,7 +37,10 @@ export function StickyCTA({ onBookingClick }: StickyCTAProps) {
         );
         if (!response.ok) throw new Error("Failed to fetch availability");
         const data = await response.json();
-        return data.map((d: { date: string }) => new Date(d.date));
+        return data.map((d: { date: string }) => {
+          const [y, m, day] = d.date.split("-").map(Number);
+          return new Date(y, m - 1, day);
+        });
       },
       staleTime: 5 * 60 * 1000,
     });

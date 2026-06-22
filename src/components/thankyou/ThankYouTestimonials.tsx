@@ -57,7 +57,7 @@ const defaultReviews = [
     image: "https://randomuser.me/api/portraits/women/33.jpg",
     timeAgo: "6 DAYS AGO",
     rating: 5,
-    review: "I rescheduled twice before finally showing up. So grateful I did – my skin has never looked better!"
+    review: "I rescheduled twice before finally showing up. So grateful I did - my skin has never looked better!"
   },
   {
     id: 7,

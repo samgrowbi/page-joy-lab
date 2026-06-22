@@ -10,7 +10,7 @@ Deno.serve(async (req) => {
 
   try {
     const url = new URL(req.url);
-    const appointmentTypeID = url.searchParams.get('appointmentTypeID') || '93509464';
+    const appointmentTypeID = url.searchParams.get('appointmentTypeID') || '92667128';
 
     const userId = Deno.env.get('ACUITY_USER_ID');
     const apiKey = Deno.env.get('ACUITY_API_KEY');

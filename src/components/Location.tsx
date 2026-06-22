@@ -74,7 +74,7 @@ export function Location() {
             </Button>
           </motion.div>
 
-          {/* Right: Map — smaller */}
+          {/* Right: Map - smaller */}
           <motion.div
             className="w-full lg:w-2/5"
             initial={{ opacity: 0, x: 50 }}

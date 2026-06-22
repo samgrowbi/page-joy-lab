@@ -25,7 +25,7 @@ const WELCOME_MESSAGE: UIMessage = {
     {
       type: "text",
       text:
-        "Hi, I'm Sofia one of the skin specialists at the GLO+ clinic. I'm here to help you find the right treatment for your skin and book your spot, right inside this chat.\n\nWhat's bothering you most about your skin lately?",
+        "Hi, I'm Sofia one of the skin specialists at the Pearl Med Spa clinic. I'm here to help you find the right treatment for your skin and book your spot, right inside this chat.\n\nWhat's bothering you most about your skin lately?",
     },
   ],
 };
@@ -214,7 +214,7 @@ function ChatWindow({
         <div className="flex-1 min-w-0 leading-tight">
           <div className="font-medium text-[15px]">Sofia · Skin Specialist</div>
           <div className="text-[11px] opacity-90 flex items-center gap-1">
-            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Online now · GLO+ clinic
+            <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> Online now · Pearl Med Spa clinic
           </div>
         </div>
         <button
