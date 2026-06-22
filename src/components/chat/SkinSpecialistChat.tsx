@@ -304,8 +304,15 @@ function ChatWindow({
         ))}
         {isLoading && <TypingIndicator />}
         {error && (
-          <div className="text-xs text-red-600 px-3 py-2 bg-red-50 rounded-lg">
-            Sorry, something went wrong. Please try again in a moment.
+          <div className="flex items-center justify-between gap-3 text-xs text-red-700 px-3 py-2 bg-red-50 border border-red-100 rounded-lg">
+            <span>Connection hiccup. Tap retry to continue.</span>
+            <button
+              type="button"
+              onClick={() => regenerate()}
+              className="px-2 py-1 rounded-md bg-red-100 hover:bg-red-200 font-medium"
+            >
+              Retry
+            </button>
           </div>
         )}
       </div>
