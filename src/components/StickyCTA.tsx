@@ -16,7 +16,7 @@ export function StickyCTA({ onBookingClick }: StickyCTAProps) {
   const queryClient = useQueryClient();
   const treatment = useTreatment();
   const savings = (parseFloat(treatment.originalPrice) - parseFloat(treatment.price)).toFixed(0);
-  const appointmentTypeID = treatment.appointmentTypeId || "92667128";
+  const appointmentTypeID = treatment.appointmentTypeId || DEFAULT_ACUITY_APPOINTMENT_TYPE_ID;
 
   const prefetchBookingData = () => {
     const now = new Date();
