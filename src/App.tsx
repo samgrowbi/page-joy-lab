@@ -27,9 +27,9 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <Routes>
-          <Route path="/" element={<InstantLift />} />
-          <Route path="/instant-lift" element={<Navigate to="/" replace />} />
-          <Route path="/led" element={<Index />} />
+          <Route path="/" element={<Index />} />
+          <Route path="/led" element={<Navigate to="/" replace />} />
+          <Route path="/instant-lift" element={<InstantLift />} />
           <Route path="/led-cryo" element={<LedCryo />} />
           <Route path="/body-sculpting" element={<BodySculpting />} />
           <Route path="/book/led" element={<BookLed />} />
