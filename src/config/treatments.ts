@@ -14,6 +14,22 @@ export interface BeforeAfterResult {
   label: string;
 }
 
+/** A single Acuity intake field that Sofia should collect via the booking form card. */
+export interface IntakeField {
+  /** Acuity field ID (from /api/v1/forms). */
+  acuityFieldId: number;
+  /** User-facing label. */
+  label: string;
+  /** Rendering type for the chat booking form. */
+  type: "checkboxes" | "radio" | "select" | "text" | "textarea" | "yesno";
+  /** Options for checkboxes/radio/select. */
+  options?: string[];
+  /** Whether the visitor must answer this before submit. */
+  required: boolean;
+  /** Optional helper copy shown under the label. */
+  helpText?: string;
+}
+
 export interface TreatmentConfig {
   /** URL slug, e.g. "led" or "led-cryo" */
   slug: string;
@@ -72,6 +88,8 @@ export interface TreatmentConfig {
     badgeText: string;
     emotionalClose?: { text: string; highlight: string };
   };
+  /** Acuity intake fields collected by Sofia's booking form. Omit to disable Sofia booking for this treatment. */
+  intakeFields?: IntakeField[];
 }
 
 export const LED_TREATMENT: TreatmentConfig = {
@@ -140,6 +158,49 @@ export const LED_TREATMENT: TreatmentConfig = {
       question: "What happens after the treatment?",
       answer:
         "You can return to your normal routine immediately, including makeup, work, and exercise. There is no downtime and no redness to manage. Your esthetician will provide simple aftercare guidance at the end of your visit to help maintain and build on your results.",
+    },
+  ],
+  intakeFields: [
+    {
+      acuityFieldId: 18466832,
+      label: "Please tick your concerns",
+      type: "checkboxes",
+      options: [
+        "Sagging Neck",
+        "Sagging Cheeks",
+        "Fine Lines",
+        "Wrinkles",
+        "Acne",
+        "Pigmentation",
+        "Sun Damage",
+        "Dark Circles",
+        "Rosacea",
+        "Big Pores",
+        "Skin Texture",
+        "No Concerns",
+      ],
+      required: true,
+    },
+    {
+      acuityFieldId: 18466883,
+      label: "Please specify your age range",
+      type: "radio",
+      options: ["Below 20", "21-34", "35-49", "50-65", "66+"],
+      required: true,
+    },
+    {
+      acuityFieldId: 18466903,
+      label: "I agree to the promotional cancellation policy",
+      type: "yesno",
+      required: true,
+      helpText:
+        "Promotional appointments can only be rescheduled once, at least 24 hours in advance. No-shows or late reschedules forfeit the promo.",
+    },
+    {
+      acuityFieldId: 18466907,
+      label: "I agree to receive SMS + email appointment reminders",
+      type: "yesno",
+      required: true,
     },
   ],
 };
