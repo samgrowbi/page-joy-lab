@@ -93,7 +93,7 @@ export const LED_TREATMENT: TreatmentConfig = {
   duration: 60,
   image: treatmentImage,
   technologyDescription: [
-    "Our Non-Surgical Facelift treatment delivers specific wavelengths of light energy into the skin's deeper layers, activating the body's own natural healing process of collagen production and cellular repair. The facial is entirely non-invasive, without heat, injectables, or foreign substances.",
+    "Our Non Surgical Face & Neck Lift Treatment delivers specific wavelengths of light energy into the skin's deeper layers, activating the body's own natural healing process of collagen production and cellular repair. The facial is entirely non-invasive, without heat, injectables, or foreign substances.",
   ],
   technologyHighlights: [
     { text: "Clinically tested" },
