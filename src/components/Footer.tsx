@@ -1,5 +1,5 @@
 import { Facebook, Instagram, Phone, Mail, MapPin, Clock } from "lucide-react";
-import lumiereLogoWhite from "@/assets/glo-logo.jpg";
+import brandLogo from "@/assets/pearl-logo.png";
 import {
   BRAND_NAME,
   BRAND_TAGLINE,
@@ -25,11 +25,11 @@ export function Footer() {
           <div className="-mt-[25px]">
             <a href="#" className="block">
               <img
-                src={lumiereLogoWhite}
+                src={brandLogo}
                 alt={BRAND_NAME}
                 loading="lazy"
                 decoding="async"
-                className="h-[63px] w-auto rounded"
+                className="h-[90px] w-auto bg-white rounded p-2"
               />
             </a>
             <p className="text-gray-400 text-base lg:text-lg xl:text-xl mb-8">{BRAND_TAGLINE}</p>

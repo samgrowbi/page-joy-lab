@@ -14,7 +14,7 @@ serve(async (req) => {
     const url = new URL(req.url);
     const month = url.searchParams.get('month');
     const year = url.searchParams.get('year');
-    const appointmentTypeID = url.searchParams.get('appointmentTypeID') || '93509464';
+    const appointmentTypeID = url.searchParams.get('appointmentTypeID') || '92667128';
     const calendarID = url.searchParams.get('calendarID'); // Optional - let Acuity auto-select if not provided
 
     if (!month || !year) {

@@ -3,7 +3,7 @@ const corsHeaders = {
   'Access-Control-Allow-Headers': 'authorization, x-client-info, apikey, content-type, x-supabase-client-platform, x-supabase-client-platform-version, x-supabase-client-runtime, x-supabase-client-runtime-version',
 };
 
-const META_PIXEL_ID = "954258890721709";
+const META_PIXEL_ID = "1736523177800295";
 const META_API_VERSION = "v20.0";
 
 async function hashData(data: string): Promise<string> {

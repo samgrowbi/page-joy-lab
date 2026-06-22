@@ -31,7 +31,7 @@ const TREATMENTS: Record<string, TreatmentInfo> = {
   "instant-lift": {
     slug: "instant-lift",
     name: "Instant Lift & Skin Tightening Treatment",
-    appointmentTypeId: "93509464",
+    appointmentTypeId: "92667128",
     price: "79.99",
     originalPrice: "349.99",
     duration: 60,

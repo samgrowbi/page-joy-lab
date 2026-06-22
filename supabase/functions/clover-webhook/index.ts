@@ -4,7 +4,7 @@ const corsHeaders = {
   "Access-Control-Allow-Methods": "POST, OPTIONS",
 };
 
-const META_PIXEL_ID = "954258890721709";
+const META_PIXEL_ID = "1736523177800295";
 const META_API_VERSION = "v19.0";
 
 async function sha256Hex(input: string): Promise<string> {

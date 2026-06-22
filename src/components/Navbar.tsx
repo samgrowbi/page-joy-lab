@@ -2,7 +2,7 @@ import { Button } from "./ui/button";
 import { motion } from "motion/react";
 import { Menu, X } from "lucide-react";
 import { useState, useEffect } from "react";
-import lumiereLogo from "@/assets/glo-logo.png";
+import brandLogo from "@/assets/pearl-logo.png";
 import { BRAND_NAME } from "@/config/brand";
 
 interface NavbarProps {
@@ -39,9 +39,9 @@ export function Navbar({ onBookingClick }: NavbarProps) {
       <div className="container mx-auto px-5 flex justify-between items-center">
         <a href="#" className="block">
           <img 
-            src={lumiereLogo} 
+            src={brandLogo}
             alt={BRAND_NAME}
-            className="h-[19px] w-auto md:h-[30px] m-[10px]" 
+            className="h-[44px] w-auto md:h-[60px] m-[6px]"
             fetchPriority="high" decoding="async"/>
         </a>
 
