@@ -41,7 +41,7 @@ export function Navbar({ onBookingClick }: NavbarProps) {
           <img 
             src={brandLogo}
             alt={BRAND_NAME}
-            className="h-[44px] w-auto md:h-[60px] m-[6px]"
+            className="h-[64px] w-auto md:h-[88px] m-[6px]"
             fetchPriority="high" decoding="async"/>
         </a>
 
