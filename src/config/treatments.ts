@@ -310,14 +310,23 @@ export const BODY_SCULPTING_TREATMENT: TreatmentConfig = {
   },
 };
 
-// Alias treatment for /instant-lift route - kept in sync with LED treatment
+// Placeholder Instant Lift treatment for /instant-lift route.
+// NOTE: This is a dummy/placeholder page - Pearl Med Spa does not yet offer
+// Instant Lift. Acuity IDs and pricing reference the GLO+ V4 template and
+// must be updated before this page is used in production.
 export const INSTANT_LIFT_TREATMENT: TreatmentConfig = {
   ...LED_TREATMENT,
   slug: "instant-lift",
-  label: "Non Surgical Face & Neck Lift Treatment",
-  appointmentTypeId: "92667128",
-  calendarId: "14022057",
-  price: "79.99",
-  originalPrice: "149.99",
+  label: "Instant Lift & Skin Tightening Facial",
+  heroTitle: {
+    line1: "Instant Lift",
+    highlight: "& Skin Tightening",
+    line2: "Facial",
+  },
+  heroSubtitle: "No Surgery. No Pain. Zero Downtime.",
+  appointmentTypeId: "90990594",
+  calendarId: "13836448",
+  price: "69.99",
+  originalPrice: "249.99",
   duration: 60,
 };
