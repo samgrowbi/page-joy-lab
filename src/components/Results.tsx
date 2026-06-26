@@ -35,8 +35,8 @@ export function Results() {
   const treatment = useTreatment();
 
   const treatmentResults = treatment.beforeAfterResults;
-  const isComposite = treatmentResults?.some(r => r.composite);
   const results = treatmentResults || defaultResults;
+  const isComposite = results.some((r: any) => r.composite);
 
   useEffect(() => {
     if (!api) return;
