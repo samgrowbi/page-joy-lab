@@ -17,7 +17,10 @@ export interface BeforeAfterResult {
   /** For composite images that already contain before+after */
   composite?: string;
   label: string;
+  name?: string;
+  age?: number;
 }
+
 
 /** A single Acuity intake field that Sofia should collect via the booking form card. */
 export interface IntakeField {
