@@ -4,6 +4,12 @@ import Autoplay from "embla-carousel-autoplay";
 import { BeforeAfterCard } from "./BeforeAfterCard";
 import { useTreatment } from "@/context/TreatmentContext";
 import { AccentWord } from "./ui/AccentWord";
+import faceBa9 from "@/assets/face-ba-9.webp";
+import faceBa11 from "@/assets/face-ba-11.webp";
+import faceBa19 from "@/assets/face-ba-19.webp";
+import faceBa28 from "@/assets/face-ba-28.webp";
+import faceBa28b from "@/assets/face-ba-28b.webp";
+import faceBa40 from "@/assets/face-ba-40.webp";
 const R2_BASE = "https://pub-eb17aaa123fc4145b1ee4c15fc2e5771.r2.dev/Med%20Spa/Before%20After";
 
 const defaultResults = [
@@ -15,6 +21,12 @@ const defaultResults = [
   { id: 7, before: `${R2_BASE}/a7-before.png`, after: `${R2_BASE}/a7-after.png`, label: "Neck Rejuvenation", name: "Diana", age: 58 },
   { id: 8, before: `${R2_BASE}/a8-before.jpg`, after: `${R2_BASE}/a8-after.jpg`, label: "Forehead Pigmentation", name: "Amanda", age: 44 },
   { id: 9, before: `${R2_BASE}/a9-before.jpg`, after: `${R2_BASE}/a9-after.jpg`, label: "Chest Rejuvenation", name: "Nicole", age: 51 },
+  { id: 101, composite: faceBa9,   label: "Facial Rejuvenation" },
+  { id: 102, composite: faceBa11,  label: "Skin Lifting" },
+  { id: 103, composite: faceBa19,  label: "Wrinkle Smoothing" },
+  { id: 104, composite: faceBa28,  label: "Skin Tone & Texture" },
+  { id: 105, composite: faceBa28b, label: "Facial Contouring" },
+  { id: 106, composite: faceBa40,  label: "Glow & Radiance" },
 ];
 
 export function Results() {
