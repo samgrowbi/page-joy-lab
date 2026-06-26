@@ -21,12 +21,13 @@ const defaultResults = [
   { id: 7, before: `${R2_BASE}/a7-before.png`, after: `${R2_BASE}/a7-after.png`, label: "Neck Rejuvenation", name: "Diana", age: 58 },
   { id: 8, before: `${R2_BASE}/a8-before.jpg`, after: `${R2_BASE}/a8-after.jpg`, label: "Forehead Pigmentation", name: "Amanda", age: 44 },
   { id: 9, before: `${R2_BASE}/a9-before.jpg`, after: `${R2_BASE}/a9-after.jpg`, label: "Chest Rejuvenation", name: "Nicole", age: 51 },
-  { id: 101, composite: faceBa9,   label: "Facial Rejuvenation" },
-  { id: 102, composite: faceBa11,  label: "Skin Lifting" },
-  { id: 103, composite: faceBa19,  label: "Wrinkle Smoothing" },
-  { id: 104, composite: faceBa28,  label: "Skin Tone & Texture" },
-  { id: 105, composite: faceBa28b, label: "Facial Contouring" },
-  { id: 106, composite: faceBa40,  label: "Glow & Radiance" },
+  { id: 101, composite: faceBa9,   label: "Facial Rejuvenation", name: "Vanessa", age: 49 },
+  { id: 102, composite: faceBa11,  label: "Skin Lifting", name: "Catherine", age: 54 },
+  { id: 103, composite: faceBa19,  label: "Wrinkle Smoothing", name: "Margaret", age: 57 },
+  { id: 104, composite: faceBa28,  label: "Skin Tone & Texture", name: "Elaine", age: 62 },
+  { id: 105, composite: faceBa28b, label: "Facial Contouring", name: "Rosalind", age: 63 },
+  { id: 106, composite: faceBa40,  label: "Glow & Radiance", name: "Brianna", age: 34 },
+
 ];
 
 export function Results() {
