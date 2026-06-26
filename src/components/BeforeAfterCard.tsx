@@ -36,7 +36,7 @@ export function BeforeAfterCard({ beforeImg, afterImg, label, name, age, classNa
           aria-label={`Open before and after slider: ${label}`}
           className="relative w-full overflow-hidden rounded-2xl shadow-lg bg-white transition-all duration-500 ease-out group-hover:shadow-2xl group-hover:-translate-y-1 cursor-pointer text-left block"
         >
-            <div className="flex w-full aspect-[4/3] lg:aspect-[16/9]">
+            <div className="flex w-full aspect-[4/3] lg:aspect-[3/2]">
                 <div className="relative w-1/2 h-full overflow-hidden border-r border-white/20 bg-gray-100">
                     {showBeforeFallback ? (
                       <FallbackPlaceholder />
