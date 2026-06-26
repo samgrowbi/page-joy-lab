@@ -3,6 +3,11 @@ import bodyConsultationImg from "@/assets/body-consultation.webp";
 import bodyPreparationImg from "@/assets/body-preparation.webp";
 import bodySessionImg from "@/assets/body-session.webp";
 import bodyPostTreatmentImg from "@/assets/body-post-treatment.webp";
+import bodyBa15 from "@/assets/body-ba-15.webp";
+import bodyBa21 from "@/assets/body-ba-21.webp";
+import bodyBa42 from "@/assets/body-ba-42.webp";
+import bodyBa59 from "@/assets/body-ba-59.webp";
+import bodyBa89 from "@/assets/body-ba-89.webp";
 
 export interface BeforeAfterResult {
   id: number;
