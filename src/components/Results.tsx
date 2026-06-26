@@ -106,6 +106,12 @@ export function Results() {
                             className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
                           />
                         </div>
+                        {('name' in item && item.name) && (
+                          <div className="w-full text-center py-2 lg:py-3 bg-white">
+                            <span className="text-sm lg:text-lg xl:text-xl font-medium text-gray-800">{item.name}</span>
+                            {('age' in item && item.age) && <span className="text-sm lg:text-lg xl:text-xl text-gray-500">, {item.age}</span>}
+                          </div>
+                        )}
                         <div className="flex w-full text-center text-sm lg:text-base font-medium tracking-wide uppercase">
                           <div className="w-1/2 py-2.5 lg:py-3.5 bg-gray-100 text-gray-500 border-r border-white transition-colors duration-300 group-hover:bg-gray-200">
                             Before
@@ -117,6 +123,7 @@ export function Results() {
                       </div>
                     </div>
                   ) : (
+
                     <BeforeAfterCard
                       beforeImg={'before' in item ? item.before || '' : ''}
                       afterImg={'after' in item ? item.after || '' : ''}
