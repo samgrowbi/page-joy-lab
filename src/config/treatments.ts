@@ -3,6 +3,11 @@ import bodyConsultationImg from "@/assets/body-consultation.webp";
 import bodyPreparationImg from "@/assets/body-preparation.webp";
 import bodySessionImg from "@/assets/body-session.webp";
 import bodyPostTreatmentImg from "@/assets/body-post-treatment.webp";
+import bodyBa15 from "@/assets/body-ba-15.webp";
+import bodyBa21 from "@/assets/body-ba-21.webp";
+import bodyBa42 from "@/assets/body-ba-42.webp";
+import bodyBa59 from "@/assets/body-ba-59.webp";
+import bodyBa89 from "@/assets/body-ba-89.webp";
 
 export interface BeforeAfterResult {
   id: number;
@@ -327,6 +332,11 @@ export const BODY_SCULPTING_TREATMENT: TreatmentConfig = {
     { id: 6, composite: "https://cdn.prod.website-files.com/675c3e115f240194d06e370c/681a0638054f50fa0260bf63_BA6.jpeg", label: "Body Sculpting" },
     { id: 7, composite: "https://cdn.prod.website-files.com/675c3e115f240194d06e370c/681a0654a660916951396e18_BA7.png", label: "Abdomen Contouring" },
     { id: 8, composite: "https://cdn.prod.website-files.com/675c3e115f240194d06e370c/681a06666983359c983c5dd3_BA8.png", label: "Full Body Transformation" },
+    { id: 15, composite: bodyBa15, label: "Body Contouring" },
+    { id: 21, composite: bodyBa21, label: "Fat Reduction" },
+    { id: 42, composite: bodyBa42, label: "Muscle Toning" },
+    { id: 59, composite: bodyBa59, label: "Skin Tightening" },
+    { id: 89, composite: bodyBa89, label: "Body Sculpting" },
   ],
   feedbackTestimonials: [
     { id: 1, name: "Michelle", video: "https://customer-vgdtdepv6dn1f10z.cloudflarestream.com/db126ce70e683df185bbd4ed52b68d87/manifest/video.m3u8", poster: "https://customer-vgdtdepv6dn1f10z.cloudflarestream.com/db126ce70e683df185bbd4ed52b68d87/thumbnails/thumbnail.jpg?time=1s&height=800", text: "Amazing body sculpting results!" },
