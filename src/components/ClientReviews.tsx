@@ -83,6 +83,22 @@ const defaultReviews = [
     rating: 5,
     review: "Full transparency: I was the biggest skeptic. LED therapy sounded too good to be true. But here I am writing a 5-star review because my jawline looks tighter, my skin is clearer, and I went to brunch without makeup last Sunday. Enough said."
   },
+  {
+    id: 10,
+    name: "Kee van Deurs",
+    image: "https://randomuser.me/api/portraits/women/52.jpg",
+    timeAgo: "JUL 28, 2026",
+    rating: 5,
+    review: "I took advantage of their promotion. The facial, of course, included the standard touches, but OMG the specialized part with their \"magic\" piece of equipment and cream was a first for me ... even my Husband said \"You look different ... really good\". I must thank both Anton, the Manager and Rose, the Facial angel for their undivided attention and willingness to answer questions."
+  },
+  {
+    id: 11,
+    name: "Dianna PQ",
+    image: "https://randomuser.me/api/portraits/women/58.jpg",
+    timeAgo: "JUL 25, 2026",
+    rating: 5,
+    review: "I had such a great experience here. The staff was professional and welcoming, and the process was explained clearly. The 3D analysis came out beautiful, and I left feeling reassured and excited. Skin looks lifted and youthful glow as promised!"
+  },
 ];
 
 export function ClientReviews() {
