@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import {
   Carousel,
