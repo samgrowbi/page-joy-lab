@@ -182,7 +182,16 @@ export function ClientReviews() {
                     </div>
 
                     {/* Review Text */}
-                    <p className="text-gray-600 text-sm lg:text-base leading-relaxed font-light line-clamp-5">"{review.review}"</p>
+                    <div>
+                      <p className={`text-gray-600 text-sm lg:text-base leading-relaxed font-light ${expandedIds.has(review.id) ? "" : "line-clamp-4"}`}>"{review.review}"</p>
+                      <button
+                        type="button"
+                        onClick={() => toggleExpanded(review.id)}
+                        className="mt-2 text-sm font-medium text-pink-600 hover:text-pink-700 focus:outline-none"
+                      >
+                        {expandedIds.has(review.id) ? "Show Less" : "Read Full"}
+                      </button>
+                    </div>
                   </div>
                 </CarouselItem>
               ))}
