@@ -99,6 +99,14 @@ const defaultReviews = [
     rating: 5,
     review: "I had such a great experience here. The staff was professional and welcoming, and the process was explained clearly. The 3D analysis came out beautiful, and I left feeling reassured and excited. Skin looks lifted and youthful glow as promised!"
   },
+  {
+    id: 12,
+    name: "S.S.",
+    image: "https://randomuser.me/api/portraits/women/48.jpg",
+    timeAgo: "JUL 28, 2026",
+    rating: 5,
+    review: "Today I went for the first time to Pearl Med Spa clinic to take advantage of their promotion and believe me, the experience was above and beyond my imagination and expectation. Doctor Antonio was amazing. I was so comfortable talking and telling all my problems to him. Rose was simply fabulous and so caring. She made me feel like a million dollar lady after my facial. I totally trust everybody in Pearl Med Spa. I will definitely recommend to my family and friends about this place and I myself will be a repeat customer for my face and neck lifting. Thank you Antonio and thank you so much Rose. God bless you both and your wonderful Spa."
+  },
 ];
 
 export function ClientReviews() {
