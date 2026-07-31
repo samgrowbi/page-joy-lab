@@ -113,6 +113,20 @@ const defaultReviews = [
 export function ClientReviews() {
   const treatment = useTreatment();
   const reviews = treatment.clientReviews || defaultReviews;
+  const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
+
+  const toggleExpanded = (id: number) => {
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
   return (
     <section className="py-4 md:py-6 bg-pink-50/60 overflow-hidden" dir="ltr">
       <div className="container mx-auto px-5">
