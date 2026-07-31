@@ -105,7 +105,7 @@ const defaultReviews = [
     image: "https://randomuser.me/api/portraits/women/48.jpg",
     timeAgo: "JUL 28, 2026",
     rating: 5,
-    review: "Today I went for the first time to Pearl Med Spa clinic to take advantage of their promotion and believe me, the experience was above and beyond my imagination and expectation. Doctor Antonio was amazing. I was so comfortable talking and telling all my problems to him. Rose was simply fabulous and so caring. She made me feel like a million dollar lady after my facial. I totally trust everybody in Pearl Med Spa. I will definitely recommend to my family and friends about this place and I myself will be a repeat customer for my face and neck lifting. Thank you Antonio and thank you so much Rose. God bless you both and your wonderful Spa."
+    review: "Today I went for the first time in 45 Rideu, Pearl Med Spa clinic to take advantage of their promotion and believe me, the experience was above and beyond my imagination and expectation. Doctor Antonio was amazing. I was so comfortable talking and telling all my problems to him. Rose was simply fabulous and so caring. She made me feel like million dollar lady after my facial. I totally trust everybody in Pearl Med Spa. I will definitely recommend to my family and friends about this place and I myself will be a repeat customer for my face and neck lifting. Thank you Antonio and thank you so much Rose. God bless you both and your wonderful Spa. .........S.S. \u2764\uFE0F\u2764\uFE0F\u2764\uFE0F\u2764\uFE0F\uD83E\uDD70\uD83E\uDD70"
   },
 ];
 
