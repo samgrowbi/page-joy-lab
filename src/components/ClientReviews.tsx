@@ -1,4 +1,5 @@
 import { Star } from "lucide-react";
+import { useState } from "react";
 import { motion } from "motion/react";
 import {
   Carousel,
@@ -112,6 +113,20 @@ const defaultReviews = [
 export function ClientReviews() {
   const treatment = useTreatment();
   const reviews = treatment.clientReviews || defaultReviews;
+  const [expandedIds, setExpandedIds] = useState<Set<number>>(new Set());
+
+  const toggleExpanded = (id: number) => {
+    setExpandedIds((prev) => {
+      const next = new Set(prev);
+      if (next.has(id)) {
+        next.delete(id);
+      } else {
+        next.add(id);
+      }
+      return next;
+    });
+  };
+
   return (
     <section className="py-4 md:py-6 bg-pink-50/60 overflow-hidden" dir="ltr">
       <div className="container mx-auto px-5">
@@ -167,7 +182,16 @@ export function ClientReviews() {
                     </div>
 
                     {/* Review Text */}
-                    <p className="text-gray-600 text-sm lg:text-base leading-relaxed font-light line-clamp-5">"{review.review}"</p>
+                    <div>
+                      <p className={`text-gray-600 text-sm lg:text-base leading-relaxed font-light ${expandedIds.has(review.id) ? "" : "line-clamp-4"}`}>"{review.review}"</p>
+                      <button
+                        type="button"
+                        onClick={() => toggleExpanded(review.id)}
+                        className="mt-2 text-sm font-medium text-pink-600 hover:text-pink-700 focus:outline-none"
+                      >
+                        {expandedIds.has(review.id) ? "Show Less" : "Read Full"}
+                      </button>
+                    </div>
                   </div>
                 </CarouselItem>
               ))}
