@@ -189,7 +189,7 @@ export function ClientReviews() {
                         onClick={() => toggleExpanded(review.id)}
                         className="mt-2 text-sm font-medium text-pink-600 hover:text-pink-700 focus:outline-none"
                       >
-                        {expandedIds.has(review.id) ? "Show Less" : "Read Full"}
+                        {expandedIds.has(review.id) ? "Show Less" : "Show More"}
                       </button>
                     </div>
                   </div>
