@@ -145,15 +145,9 @@ export function Hero({ onBookingClick }: HeroProps) {
             Look Years <AccentWord>Younger</AccentWord>
           </h1>
 
-          {/* H2 - rotating value props */}
+          {/* H2 - static treatment headline */}
           <h2 className="text-xl sm:text-2xl md:text-2xl lg:text-3xl xl:text-4xl font-sans font-light text-white/90 leading-snug mt-3 sm:mt-5 lg:mt-6 w-full">
-            <RotatingText
-              messages={[
-                treatment.label,
-                "Reduce Signs of Aging",
-                "Feel Comfortable In Your Skin",
-              ]}
-            />
+            {treatment.label}
           </h2>
 
           {/* H3 - single inline row on mobile, single line on desktop */}
