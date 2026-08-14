@@ -3,7 +3,7 @@ import { motion } from "motion/react";
 import { useQueryClient } from "@tanstack/react-query";
 import { useRef, useEffect } from "react";
 import { useTreatment } from "@/context/TreatmentContext";
-import { RotatingText } from "./ui/RotatingText";
+
 import { AccentWord } from "./ui/AccentWord";
 import { DEFAULT_ACUITY_APPOINTMENT_TYPE_ID, DEFAULT_ACUITY_CALENDAR_ID } from "@/config/acuity";
 
