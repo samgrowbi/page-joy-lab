@@ -466,15 +466,15 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        if (response.status === 403) {
-          throw new Error(
-            "This time slot is no longer available. Please pick a different time or contact us for help."
-          );
-        }
-        if (response.status === 409 || /already|conflict|unavailable/i.test(errorData?.error || "")) {
-          throw new Error(
-            "That time was just booked by someone else. Please choose another available slot."
-          );
+        const acuityMessage: string =
+          errorData?.error || errorData?.details?.message || "";
+        if (
+          response.status === 403 ||
+          response.status === 409 ||
+          isSlotUnavailableMessage(acuityMessage) ||
+          /already|conflict|unavailable/i.test(acuityMessage)
+        ) {
+          throw new SlotUnavailableError();
         }
         throw new Error(
           errorData.error ||
