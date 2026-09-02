@@ -535,6 +535,16 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
         status: "failed",
         error_message: error?.message || "Unknown error",
       });
+
+      // Slot gone: drop the stale selection, refresh the slot list and send the
+      // user back to time selection instead of leaving them stuck on the form.
+      if (error instanceof SlotUnavailableError || isSlotUnavailableMessage(error?.message)) {
+        setSelectedTimeRaw(undefined);
+        queryClient.invalidateQueries({ queryKey: ["acuity-times"] });
+        queryClient.invalidateQueries({ queryKey: ["acuity-availability"] });
+        setSlideDirection("backward");
+        setCurrentStep(isMobile ? "time" : "datetime");
+      }
     },
   });
 
