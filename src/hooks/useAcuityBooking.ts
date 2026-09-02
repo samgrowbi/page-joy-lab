@@ -326,34 +326,42 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
     }
   }, [allAvailableDates.length]);
 
+  // Fetch the live slot list for a given day, bypassing browser/CDN caches so we
+  // never offer (or submit) a slot that Acuity has already given away.
+  const fetchTimesForDate = async (date: Date): Promise<{ time: string; slotsAvailable: number }[]> => {
+    const dateStr = formatDateOnly(date);
+
+    // Don't pass calendarID - let Acuity auto-select based on appointment type
+    const response = await fetch(
+      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/acuity-times?date=${dateStr}&appointmentTypeID=${appointmentTypeID}&_ts=${Date.now()}`,
+      {
+        cache: "no-store",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+          "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch times");
+    }
+
+    return response.json();
+  };
+
+  const timesQueryKey = ["acuity-times", selectedDate ? formatDateOnly(selectedDate) : null, appointmentTypeID];
+
   const timesQuery = useQuery({
-    queryKey: ["acuity-times", selectedDate ? formatDateOnly(selectedDate) : null, appointmentTypeID],
+    queryKey: timesQueryKey,
     queryFn: async () => {
       if (!selectedDate) return [];
-      
-      // Use date-only formatting to get the calendar day the user clicked
-      const dateStr = formatDateOnly(selectedDate);
-      
-      // Don't pass calendarID - let Acuity auto-select based on appointment type
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/acuity-times?date=${dateStr}&appointmentTypeID=${appointmentTypeID}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-            "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-          },
-        }
-      );
-      
-      if (!response.ok) {
-        throw new Error("Failed to fetch times");
-      }
-      
-      return response.json();
+      return fetchTimesForDate(selectedDate);
     },
-    staleTime: 2 * 60 * 1000, // 2 minutes
+    staleTime: 0,
     gcTime: 10 * 60 * 1000, // 10 minutes
+    refetchOnWindowFocus: true,
     enabled: !!selectedDate,
   });
 
