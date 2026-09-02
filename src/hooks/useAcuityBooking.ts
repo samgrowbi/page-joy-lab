@@ -398,6 +398,23 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
         throw new Error("Missing required booking information");
       }
 
+      // Re-validate the slot right before submitting: the times list may have been
+      // loaded minutes ago and the slot could have been taken in the meantime.
+      if (selectedDate) {
+        try {
+          const freshTimes = await fetchTimesForDate(selectedDate);
+          queryClient.setQueryData(timesQueryKey, freshTimes);
+          const stillAvailable = freshTimes.some((slot) => slot.time === selectedTime);
+          if (!stillAvailable) {
+            throw new SlotUnavailableError();
+          }
+        } catch (err) {
+          if (err instanceof SlotUnavailableError) throw err;
+          // Network hiccup on the check - let Acuity be the final authority.
+        }
+      }
+
+
       const visibleForms = filterIntakeForms(formsQuery.data || []);
       const allowedFieldIds = new Set(
         visibleForms.flatMap((f) => f.fields.map((field) => field.id))
