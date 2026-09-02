@@ -134,6 +134,12 @@ export function BookingDialog({ isOpen, onClose }: BookingDialogProps) {
             {booking.bookingError && (
               <p className="text-sm text-red-600 mb-3 text-center">{booking.bookingError}</p>
             )}
+            {booking.currentStep === "details" && !booking.canGoNext() && !booking.isBooking && (
+              <p className="text-sm text-muted-foreground mb-3 text-center">
+                Still needed: {booking.missingRequirements().join(", ")}
+              </p>
+            )}
+
             <Button
               onClick={booking.goNext}
               disabled={!booking.canGoNext() || booking.isBooking}

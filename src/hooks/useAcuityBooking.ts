@@ -151,6 +151,17 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
   const appointmentTypeID = treatmentConfig?.appointmentTypeId || DEFAULT_ACUITY_APPOINTMENT_TYPE_ID;
   const calendarID = treatmentConfig?.calendarId || "14022057";
 
+  // Marketing opt-in consent fields (e.g. SMS reminders) are flagged "required" in Acuity
+  // but must never block a booking - consent has to stay genuinely optional.
+  const isOptInConsentField = (fieldName: string) => {
+    const n = fieldName.toLowerCase();
+    return (
+      n.includes("sms") ||
+      n.includes("text message") ||
+      (n.includes("reminder") && n.includes("receive"))
+    );
+  };
+
   const filterIntakeForms = (forms: IntakeForm[]) =>
     forms
       .filter((form) => !["Private SOAP Notes", "Botox Questionnaire"].includes(form.name))
@@ -390,6 +401,21 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
           value,
         }));
 
+      // Explicitly send "no" for unchecked opt-in consent fields so Acuity's
+      // required flag is satisfied without forcing the client to opt in.
+      for (const form of visibleForms) {
+        for (const field of form.fields) {
+          if (
+            field.required &&
+            isOptInConsentField(field.name) &&
+            !intakeFields[field.id]
+          ) {
+            fields.push({ id: field.id, value: "no" });
+          }
+        }
+      }
+
+
       const response = await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/acuity-book`,
         {
@@ -534,6 +560,24 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
   // Filter out unwanted forms and fields
   const filteredForms = filterIntakeForms(formsQuery.data || []);
 
+  const missingRequirements = (): string[] => {
+    const missing: string[] = [];
+    if (!formData.firstName) missing.push("First name");
+    if (!formData.lastName) missing.push("Last name");
+    if (!formData.email) missing.push("Email");
+    if (!formData.phone || formData.phone.length < 10 || formData.phone.startsWith("1")) {
+      missing.push("A valid 10-digit phone number");
+    }
+    for (const form of filteredForms) {
+      for (const field of form.fields) {
+        if (field.required && !isOptInConsentField(field.name) && !intakeFields[field.id]) {
+          missing.push(field.name);
+        }
+      }
+    }
+    return missing;
+  };
+
   const canGoNext = () => {
     switch (currentStep) {
       case "date":
@@ -543,27 +587,12 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
       case "datetime":
         return !!selectedDate && !!selectedTime;
       case "details":
-        // Check basic form data including phone
-        if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
-          return false;
-        }
-        // Phone must be 10 digits and not start with 1
-        if (formData.phone.length < 10 || formData.phone.startsWith("1")) {
-          return false;
-        }
-        // Check required intake fields (only from filtered forms)
-        for (const form of filteredForms) {
-          for (const field of form.fields) {
-            if (field.required && !intakeFields[field.id]) {
-              return false;
-            }
-          }
-        }
-        return true;
+        return missingRequirements().length === 0;
       default:
         return false;
     }
   };
+
 
   const updateIntakeField = (fieldId: number, value: string) => {
     setIntakeFields((prev) => ({
@@ -602,5 +631,7 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
     goNext,
     reset,
     canGoNext,
+    missingRequirements,
+
   };
 }
