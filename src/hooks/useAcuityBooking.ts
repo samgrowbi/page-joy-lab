@@ -534,6 +534,24 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
   // Filter out unwanted forms and fields
   const filteredForms = filterIntakeForms(formsQuery.data || []);
 
+  const missingRequirements = (): string[] => {
+    const missing: string[] = [];
+    if (!formData.firstName) missing.push("First name");
+    if (!formData.lastName) missing.push("Last name");
+    if (!formData.email) missing.push("Email");
+    if (!formData.phone || formData.phone.length < 10 || formData.phone.startsWith("1")) {
+      missing.push("A valid 10-digit phone number");
+    }
+    for (const form of filteredForms) {
+      for (const field of form.fields) {
+        if (field.required && !isOptInConsentField(field.name) && !intakeFields[field.id]) {
+          missing.push(field.name);
+        }
+      }
+    }
+    return missing;
+  };
+
   const canGoNext = () => {
     switch (currentStep) {
       case "date":
@@ -543,27 +561,12 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
       case "datetime":
         return !!selectedDate && !!selectedTime;
       case "details":
-        // Check basic form data including phone
-        if (!formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
-          return false;
-        }
-        // Phone must be 10 digits and not start with 1
-        if (formData.phone.length < 10 || formData.phone.startsWith("1")) {
-          return false;
-        }
-        // Check required intake fields (only from filtered forms)
-        for (const form of filteredForms) {
-          for (const field of form.fields) {
-            if (field.required && !intakeFields[field.id]) {
-              return false;
-            }
-          }
-        }
-        return true;
+        return missingRequirements().length === 0;
       default:
         return false;
     }
   };
+
 
   const updateIntakeField = (fieldId: number, value: string) => {
     setIntakeFields((prev) => ({
