@@ -401,6 +401,21 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
           value,
         }));
 
+      // Explicitly send "no" for unchecked opt-in consent fields so Acuity's
+      // required flag is satisfied without forcing the client to opt in.
+      for (const form of visibleForms) {
+        for (const field of form.fields) {
+          if (
+            field.required &&
+            isOptInConsentField(field.name) &&
+            !intakeFields[field.id]
+          ) {
+            fields.push({ id: field.id, value: "no" });
+          }
+        }
+      }
+
+
       const response = await fetch(
         `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/acuity-book`,
         {
