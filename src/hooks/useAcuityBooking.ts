@@ -151,6 +151,17 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
   const appointmentTypeID = treatmentConfig?.appointmentTypeId || DEFAULT_ACUITY_APPOINTMENT_TYPE_ID;
   const calendarID = treatmentConfig?.calendarId || "14022057";
 
+  // Marketing opt-in consent fields (e.g. SMS reminders) are flagged "required" in Acuity
+  // but must never block a booking - consent has to stay genuinely optional.
+  const isOptInConsentField = (fieldName: string) => {
+    const n = fieldName.toLowerCase();
+    return (
+      n.includes("sms") ||
+      n.includes("text message") ||
+      (n.includes("reminder") && n.includes("receive"))
+    );
+  };
+
   const filterIntakeForms = (forms: IntakeForm[]) =>
     forms
       .filter((form) => !["Private SOAP Notes", "Botox Questionnaire"].includes(form.name))
