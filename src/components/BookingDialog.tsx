@@ -63,6 +63,11 @@ export function BookingDialog({ isOpen, onClose }: BookingDialogProps) {
         </DialogHeader>
 
         <div className="flex-1 min-h-0 overflow-y-auto">
+          {booking.bookingError && (booking.currentStep === "time" || booking.currentStep === "datetime") && (
+            <p className="mx-4 mt-4 rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-600 text-center">
+              {booking.bookingError}
+            </p>
+          )}
           {/* Mobile: Date step */}
           {booking.currentStep === "date" && (
             <BookingCalendar
