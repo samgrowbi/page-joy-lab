@@ -78,6 +78,11 @@ export function InlineBooking() {
 
         {/* Content */}
         <div className="min-h-[320px]">
+          {booking.bookingError && (booking.currentStep === "time" || booking.currentStep === "datetime") && (
+            <p className="m-3 lg:m-4 rounded-lg bg-red-50 border border-red-200 p-3 text-xs lg:text-sm text-red-600 text-center">
+              {booking.bookingError}
+            </p>
+          )}
           {booking.currentStep === "date" && (
             <BookingCalendar
               selectedDate={booking.selectedDate}
