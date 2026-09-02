@@ -46,6 +46,7 @@ export interface BookingConfirmation {
 
 export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boolean, treatmentConfig?: TreatmentConfig) {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [currentStep, setCurrentStep] = useState<BookingStep>(isMobile ? "date" : "datetime");
   const [slideDirection, setSlideDirection] = useState<"forward" | "backward">("forward");
   const [selectedDate, setSelectedDateRaw] = useState<Date | undefined>();
