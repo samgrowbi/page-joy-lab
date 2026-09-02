@@ -631,5 +631,7 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
     goNext,
     reset,
     canGoNext,
+    missingRequirements,
+
   };
 }
