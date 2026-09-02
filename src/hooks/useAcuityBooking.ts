@@ -1,5 +1,5 @@
 import { useState, useEffect, useRef } from "react";
-import { useQuery, useMutation } from "@tanstack/react-query";
+import { useQuery, useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router-dom";
 import { 
   DEFAULT_ACUITY_APPOINTMENT_TYPE_ID,
@@ -27,6 +27,19 @@ const getLeadSessionId = (): string => {
 
 export type BookingStep = "treatment" | "date" | "time" | "datetime" | "details" | "confirmation";
 
+const SLOT_TAKEN_MESSAGE =
+  "That time was just taken. We've refreshed the available times - please pick another slot.";
+
+class SlotUnavailableError extends Error {
+  constructor() {
+    super(SLOT_TAKEN_MESSAGE);
+    this.name = "SlotUnavailableError";
+  }
+}
+
+const isSlotUnavailableMessage = (message?: string) =>
+  !!message && /not an available time slot|no longer available|just booked|just taken/i.test(message);
+
 export interface BookingFormData {
   firstName: string;
   lastName: string;
@@ -46,6 +59,7 @@ export interface BookingConfirmation {
 
 export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boolean, treatmentConfig?: TreatmentConfig) {
   const navigate = useNavigate();
+  const queryClient = useQueryClient();
   const [currentStep, setCurrentStep] = useState<BookingStep>(isMobile ? "date" : "datetime");
   const [slideDirection, setSlideDirection] = useState<"forward" | "backward">("forward");
   const [selectedDate, setSelectedDateRaw] = useState<Date | undefined>();
@@ -325,34 +339,42 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
     }
   }, [allAvailableDates.length]);
 
+  // Fetch the live slot list for a given day, bypassing browser/CDN caches so we
+  // never offer (or submit) a slot that Acuity has already given away.
+  const fetchTimesForDate = async (date: Date): Promise<{ time: string; slotsAvailable: number }[]> => {
+    const dateStr = formatDateOnly(date);
+
+    // Don't pass calendarID - let Acuity auto-select based on appointment type
+    const response = await fetch(
+      `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/acuity-times?date=${dateStr}&appointmentTypeID=${appointmentTypeID}&_ts=${Date.now()}`,
+      {
+        cache: "no-store",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
+          "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
+        },
+      }
+    );
+
+    if (!response.ok) {
+      throw new Error("Failed to fetch times");
+    }
+
+    return response.json();
+  };
+
+  const timesQueryKey = ["acuity-times", selectedDate ? formatDateOnly(selectedDate) : null, appointmentTypeID];
+
   const timesQuery = useQuery({
-    queryKey: ["acuity-times", selectedDate ? formatDateOnly(selectedDate) : null, appointmentTypeID],
+    queryKey: timesQueryKey,
     queryFn: async () => {
       if (!selectedDate) return [];
-      
-      // Use date-only formatting to get the calendar day the user clicked
-      const dateStr = formatDateOnly(selectedDate);
-      
-      // Don't pass calendarID - let Acuity auto-select based on appointment type
-      const response = await fetch(
-        `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/acuity-times?date=${dateStr}&appointmentTypeID=${appointmentTypeID}`,
-        {
-          headers: {
-            "Content-Type": "application/json",
-            "apikey": import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY,
-            "Authorization": `Bearer ${import.meta.env.VITE_SUPABASE_PUBLISHABLE_KEY}`,
-          },
-        }
-      );
-      
-      if (!response.ok) {
-        throw new Error("Failed to fetch times");
-      }
-      
-      return response.json();
+      return fetchTimesForDate(selectedDate);
     },
-    staleTime: 2 * 60 * 1000, // 2 minutes
+    staleTime: 0,
     gcTime: 10 * 60 * 1000, // 10 minutes
+    refetchOnWindowFocus: true,
     enabled: !!selectedDate,
   });
 
@@ -388,6 +410,23 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
       if (!selectedTime || !formData.firstName || !formData.lastName || !formData.email || !formData.phone) {
         throw new Error("Missing required booking information");
       }
+
+      // Re-validate the slot right before submitting: the times list may have been
+      // loaded minutes ago and the slot could have been taken in the meantime.
+      if (selectedDate) {
+        try {
+          const freshTimes = await fetchTimesForDate(selectedDate);
+          queryClient.setQueryData(timesQueryKey, freshTimes);
+          const stillAvailable = freshTimes.some((slot) => slot.time === selectedTime);
+          if (!stillAvailable) {
+            throw new SlotUnavailableError();
+          }
+        } catch (err) {
+          if (err instanceof SlotUnavailableError) throw err;
+          // Network hiccup on the check - let Acuity be the final authority.
+        }
+      }
+
 
       const visibleForms = filterIntakeForms(formsQuery.data || []);
       const allowedFieldIds = new Set(
@@ -427,15 +466,15 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
 
       if (!response.ok) {
         const errorData = await response.json().catch(() => ({}));
-        if (response.status === 403) {
-          throw new Error(
-            "This time slot is no longer available. Please pick a different time or contact us for help."
-          );
-        }
-        if (response.status === 409 || /already|conflict|unavailable/i.test(errorData?.error || "")) {
-          throw new Error(
-            "That time was just booked by someone else. Please choose another available slot."
-          );
+        const acuityMessage: string =
+          errorData?.error || errorData?.details?.message || "";
+        if (
+          response.status === 403 ||
+          response.status === 409 ||
+          isSlotUnavailableMessage(acuityMessage) ||
+          /already|conflict|unavailable/i.test(acuityMessage)
+        ) {
+          throw new SlotUnavailableError();
         }
         throw new Error(
           errorData.error ||
@@ -496,6 +535,16 @@ export function useAcuityBooking(onBookingSuccess?: () => void, isMobile?: boole
         status: "failed",
         error_message: error?.message || "Unknown error",
       });
+
+      // Slot gone: drop the stale selection, refresh the slot list and send the
+      // user back to time selection instead of leaving them stuck on the form.
+      if (error instanceof SlotUnavailableError || isSlotUnavailableMessage(error?.message)) {
+        setSelectedTimeRaw(undefined);
+        queryClient.invalidateQueries({ queryKey: ["acuity-times"] });
+        queryClient.invalidateQueries({ queryKey: ["acuity-availability"] });
+        setSlideDirection("backward");
+        setCurrentStep(isMobile ? "time" : "datetime");
+      }
     },
   });
 

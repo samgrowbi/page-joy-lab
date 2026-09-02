@@ -79,6 +79,11 @@ const BookingPage = ({ treatment }: BookingPageProps) => {
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-5 py-6">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg shadow-pink-100/50 overflow-hidden">
+          {booking.bookingError && (booking.currentStep === "time" || booking.currentStep === "datetime") && (
+            <p className="m-4 rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-600 text-center">
+              {booking.bookingError}
+            </p>
+          )}
           {booking.currentStep === "date" && (
             <BookingCalendar
               selectedDate={booking.selectedDate}
