@@ -27,6 +27,19 @@ const getLeadSessionId = (): string => {
 
 export type BookingStep = "treatment" | "date" | "time" | "datetime" | "details" | "confirmation";
 
+const SLOT_TAKEN_MESSAGE =
+  "That time was just taken. We've refreshed the available times - please pick another slot.";
+
+class SlotUnavailableError extends Error {
+  constructor() {
+    super(SLOT_TAKEN_MESSAGE);
+    this.name = "SlotUnavailableError";
+  }
+}
+
+const isSlotUnavailableMessage = (message?: string) =>
+  !!message && /not an available time slot|no longer available|just booked|just taken/i.test(message);
+
 export interface BookingFormData {
   firstName: string;
   lastName: string;
