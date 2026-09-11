@@ -11,8 +11,8 @@ export const BUSINESS_ADDRESS_LINES = [
 ];
 export const BUSINESS_ADDRESS_SINGLELINE = "45 Rideau St, UNIT 401, Ottawa, ON K1N 5W8, Canada";
 
-export const BUSINESS_PHONE_DISPLAY = "+1 (613) 618-4813";
-export const BUSINESS_PHONE_TEL = "+16136184813";
+export const BUSINESS_PHONE_DISPLAY = "+1 (343) 342-3400";
+export const BUSINESS_PHONE_TEL = "+13433423400";
 export const BUSINESS_EMAIL = "info@pearlmedspas.ca";
 
 export const SOCIAL_INSTAGRAM = "https://www.instagram.com/pearl_medspa/";
