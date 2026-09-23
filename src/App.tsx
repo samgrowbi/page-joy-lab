@@ -14,7 +14,6 @@ import BookInstantLift from "./pages/BookInstantLift";
 import LedCryo from "./pages/LedCryo";
 import BodySculpting from "./pages/BodySculpting";
 import InstantLift from "./pages/InstantLift";
-import SkinSpecialistChat from "./components/chat/SkinSpecialistChat";
 import Auth from "./pages/Auth";
 import Admin from "./pages/Admin";
 
@@ -42,7 +41,6 @@ const App = () => (
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>
-        <SkinSpecialistChat />
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

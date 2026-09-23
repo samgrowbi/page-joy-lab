@@ -4,13 +4,8 @@ import Autoplay from "embla-carousel-autoplay";
 import { BeforeAfterCard } from "./BeforeAfterCard";
 import { useTreatment } from "@/context/TreatmentContext";
 import { AccentWord } from "./ui/AccentWord";
-import faceBa9 from "@/assets/face-ba-9.webp";
-import faceBa11 from "@/assets/face-ba-11.webp";
-import faceBa19 from "@/assets/face-ba-19.webp";
-import faceBa28 from "@/assets/face-ba-28.webp";
-import faceBa28b from "@/assets/face-ba-28b.webp";
-import faceBa40 from "@/assets/face-ba-40.webp";
 const R2_BASE = "https://pub-eb17aaa123fc4145b1ee4c15fc2e5771.r2.dev/Med%20Spa/Before%20After";
+const NEW_FACE_BASE = `${R2_BASE}/New/Face/Face2`;
 
 const defaultResults = [
   { id: 3, before: `${R2_BASE}/a3-before.png`, after: `${R2_BASE}/a3-after.png`, label: "Facial Lifting", name: "Maria", age: 61 },
@@ -18,12 +13,12 @@ const defaultResults = [
   { id: 5, before: `${R2_BASE}/a5-after.png`, after: `${R2_BASE}/a5-before.png`, label: "Pigmentation", name: "Laura", age: 58 },
   { id: 6, before: `${R2_BASE}/a6-after.png`, after: `${R2_BASE}/a6-before.png`, label: "Skin Tightening", name: "Rachel", age: 68 },
   { id: 7, before: `${R2_BASE}/a7-before.png`, after: `${R2_BASE}/a7-after.png`, label: "Neck Rejuvenation", name: "Diana", age: 58 },
-  { id: 101, composite: faceBa9,   label: "Facial Rejuvenation", name: "Vanessa", age: 49 },
-  { id: 102, composite: faceBa11,  label: "Skin Lifting", name: "Catherine", age: 54 },
-  { id: 103, composite: faceBa19,  label: "Wrinkle Smoothing", name: "Margaret", age: 57 },
-  { id: 104, composite: faceBa28,  label: "Skin Tone & Texture", name: "Elaine", age: 62 },
-  { id: 105, composite: faceBa28b, label: "Facial Contouring", name: "Rosalind", age: 63 },
-  { id: 106, composite: faceBa40,  label: "Glow & Radiance", name: "Brianna", age: 34 },
+  { id: 101, composite: `${NEW_FACE_BASE}/1.png`, label: "Facial Rejuvenation", name: "Vanessa", age: 49 },
+  { id: 102, composite: `${NEW_FACE_BASE}/2.jpeg`, label: "Skin Lifting", name: "Catherine", age: 54 },
+  { id: 103, composite: `${NEW_FACE_BASE}/3.png`, label: "Wrinkle Smoothing", name: "Margaret", age: 57 },
+  { id: 104, composite: `${NEW_FACE_BASE}/4.png`, label: "Skin Tone & Texture", name: "Elaine", age: 62 },
+  { id: 105, composite: `${NEW_FACE_BASE}/5.jpeg`, label: "Facial Contouring", name: "Rosalind", age: 63 },
+  { id: 106, composite: `${NEW_FACE_BASE}/6.png`, label: "Glow & Radiance", name: "Brianna", age: 34 },
 
 ];
 
@@ -98,7 +93,7 @@ export function Results() {
                         <div className="w-full aspect-[4/3] lg:aspect-[3/2] overflow-hidden bg-gray-100">
                           <img
                             src={item.composite}
-                            alt={item.label}
+                            alt={`${item.label} before and after treatment result`}
                             loading="lazy"
                             className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
                           />
