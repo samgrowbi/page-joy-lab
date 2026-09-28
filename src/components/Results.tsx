@@ -8,11 +8,6 @@ const R2_BASE = "https://pub-eb17aaa123fc4145b1ee4c15fc2e5771.r2.dev/Med%20Spa/B
 const NEW_FACE_BASE = `${R2_BASE}/New/Face/Face2`;
 
 const defaultResults = [
-  { id: 3, before: `${R2_BASE}/a3-before.png`, after: `${R2_BASE}/a3-after.png`, label: "Facial Lifting", name: "Maria", age: 61 },
-  { id: 4, before: `${R2_BASE}/a4-before.png`, after: `${R2_BASE}/a4-after.png`, label: "Skin Rejuvenation", name: "Jennifer", age: 55 },
-  { id: 5, before: `${R2_BASE}/a5-after.png`, after: `${R2_BASE}/a5-before.png`, label: "Pigmentation", name: "Laura", age: 58 },
-  { id: 6, before: `${R2_BASE}/a6-after.png`, after: `${R2_BASE}/a6-before.png`, label: "Skin Tightening", name: "Rachel", age: 68 },
-  { id: 7, before: `${R2_BASE}/a7-before.png`, after: `${R2_BASE}/a7-after.png`, label: "Neck Rejuvenation", name: "Diana", age: 58 },
   { id: 101, composite: `${NEW_FACE_BASE}/1.png`, label: "Facial Rejuvenation", name: "Vanessa", age: 49 },
   { id: 102, composite: `${NEW_FACE_BASE}/2.jpeg`, label: "Skin Lifting", name: "Catherine", age: 54 },
   { id: 103, composite: `${NEW_FACE_BASE}/3.png`, label: "Wrinkle Smoothing", name: "Margaret", age: 57 },
