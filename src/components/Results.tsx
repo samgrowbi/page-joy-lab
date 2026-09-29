@@ -7,14 +7,12 @@ import { AccentWord } from "./ui/AccentWord";
 const R2_BASE = "https://pub-eb17aaa123fc4145b1ee4c15fc2e5771.r2.dev/Med%20Spa/Before%20After";
 const NEW_FACE_BASE = `${R2_BASE}/New/Face/Face2`;
 
-const defaultResults = [
-  { id: 101, composite: `${NEW_FACE_BASE}/1.png`, label: "Facial Rejuvenation", name: "Vanessa", age: 49 },
-  { id: 102, composite: `${NEW_FACE_BASE}/2.jpeg`, label: "Skin Lifting", name: "Catherine", age: 54 },
-  { id: 103, composite: `${NEW_FACE_BASE}/3.png`, label: "Wrinkle Smoothing", name: "Margaret", age: 57 },
-  { id: 104, composite: `${NEW_FACE_BASE}/4.png`, label: "Skin Tone & Texture", name: "Elaine", age: 62 },
-  { id: 105, composite: `${NEW_FACE_BASE}/5.jpeg`, label: "Facial Contouring", name: "Rosalind", age: 63 },
-  { id: 106, composite: `${NEW_FACE_BASE}/6.png`, label: "Glow & Radiance", name: "Brianna", age: 34 },
-
+const defaultResults: { id: number; composite: string; label: string; name: string; age: number; objectPosition?: string }[] = [
+  { id: 101, composite: `${NEW_FACE_BASE}/1.png`, label: "Facial Rejuvenation", name: "Catherine", age: 38, objectPosition: "center 30%" },
+  { id: 102, composite: `${NEW_FACE_BASE}/2.jpeg`, label: "Skin Lifting", name: "Margaret", age: 41, objectPosition: "center 10%" },
+  { id: 103, composite: `${NEW_FACE_BASE}/3.png`, label: "Wrinkle Smoothing", name: "Elaine", age: 62 },
+  { id: 104, composite: `${NEW_FACE_BASE}/4.png`, label: "Skin Tone & Texture", name: "Brianna", age: 34, objectPosition: "center 10%" },
+  { id: 105, composite: `${NEW_FACE_BASE}/5.jpeg`, label: "Facial Contouring", name: "Rosalind", age: 42, objectPosition: "center 0%" },
 ];
 
 export function Results() {
@@ -45,19 +43,10 @@ export function Results() {
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[1000px] bg-pink-50/50 rounded-full blur-3xl -z-10 pointer-events-none opacity-60" />
 
       <div className="container mx-auto px-5 pt-0 md:pt-0">
-        <div className="text-center mb-8 lg:mb-12 space-y-1 lg:space-y-2">
-          <p className="text-[18px] lg:text-base uppercase tracking-[0.2em] text-gray-400 font-bold">No Filters</p>
+        <div className="text-center mb-8 lg:mb-12">
           <h2 className="hidden sm:block text-4xl lg:text-5xl xl:text-6xl font-serif font-normal text-gray-900 leading-tight">
             <span className="text-gray-900">Real People.</span> <AccentWord>Real Results.</AccentWord>
           </h2>
-          <div className="flex justify-center pt-2">
-            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-green-50 border border-green-200 rounded-full text-xs lg:text-sm font-medium text-green-700">
-              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" className="text-green-600">
-                <polyline points="20 6 9 17 4 12" />
-              </svg>
-              Verified Photos
-            </span>
-          </div>
         </div>
 
         <div className="relative">
@@ -88,8 +77,9 @@ export function Results() {
                         <div className="w-full aspect-[4/3] lg:aspect-[3/2] overflow-hidden bg-gray-100">
                           <img
                             src={item.composite}
-                            alt={`${item.label} before and after treatment result`}
+                            alt={`Before and after treatment result - ${(item as any).name}, ${(item as any).age}`}
                             loading="lazy"
+                            style={{ objectPosition: (item as any).objectPosition || "center center" }}
                             className="w-full h-full object-cover transition-all duration-700 ease-out group-hover:scale-105"
                           />
                         </div>
