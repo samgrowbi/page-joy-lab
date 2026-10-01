@@ -166,6 +166,63 @@ export type Database = {
         }
         Relationships: []
       }
+      waitlist: {
+        Row: {
+          appointment_type_id: string | null
+          created_at: string
+          email: string
+          first_name: string
+          id: string
+          last_name: string
+          phone: string
+          preferred_date: string
+          preferred_time: string
+          sheet_synced: boolean
+          sheet_synced_at: string | null
+          source_url: string | null
+          status: string
+          treatment_label: string | null
+          treatment_slug: string | null
+          user_agent: string | null
+        }
+        Insert: {
+          appointment_type_id?: string | null
+          created_at?: string
+          email: string
+          first_name: string
+          id?: string
+          last_name: string
+          phone: string
+          preferred_date: string
+          preferred_time: string
+          sheet_synced?: boolean
+          sheet_synced_at?: string | null
+          source_url?: string | null
+          status?: string
+          treatment_label?: string | null
+          treatment_slug?: string | null
+          user_agent?: string | null
+        }
+        Update: {
+          appointment_type_id?: string | null
+          created_at?: string
+          email?: string
+          first_name?: string
+          id?: string
+          last_name?: string
+          phone?: string
+          preferred_date?: string
+          preferred_time?: string
+          sheet_synced?: boolean
+          sheet_synced_at?: string | null
+          source_url?: string | null
+          status?: string
+          treatment_label?: string | null
+          treatment_slug?: string | null
+          user_agent?: string | null
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
