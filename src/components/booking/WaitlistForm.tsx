@@ -1,5 +1,6 @@
 import { useMemo, useState } from "react";
-import { CheckCircle2, Loader2 } from "lucide-react";
+import { useNavigate } from "react-router-dom";
+import { Loader2 } from "lucide-react";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Button } from "@/components/ui/button";
@@ -63,7 +64,7 @@ export function WaitlistForm({ treatment, onViewLaterDates, onSlotsAvailable }: 
   const [honeypot, setHoneypot] = useState("");
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
-  const [done, setDone] = useState(false);
+  const navigate = useNavigate();
 
   const { minDate, maxDate } = useMemo(() => {
     const today = new Date();
@@ -112,26 +113,22 @@ export function WaitlistForm({ treatment, onViewLaterDates, onSlotsAvailable }: 
         return;
       }
       if (!res.ok) throw new Error(String(res.status));
-      setDone(true);
+      const data = await res.json().catch(() => ({}));
+      const params = new URLSearchParams({ slug: treatment.slug });
+      if (data?.id) params.set("id", data.id);
+      navigate(`/waitlist-thank-you?${params}`, {
+        state: {
+          firstName: fields.firstName.trim(),
+          preferredDate: fields.preferredDate,
+          preferredTime: fields.preferredTime,
+        },
+      });
     } catch {
       setSubmitError("We couldn't add you to the waitlist. Check your connection and try again, or call us.");
     } finally {
       setSubmitting(false);
     }
   };
-
-  if (done) {
-    return (
-      <div className="px-6 py-14 text-center max-w-md mx-auto">
-        <CheckCircle2 className="h-12 w-12 text-pink-500 mx-auto mb-4" aria-hidden />
-        <h2 className="text-2xl font-serif text-foreground mb-2">You're on the waitlist</h2>
-        <p className="text-muted-foreground">
-          We'll contact you at {fields.email} or {formatPhone(fields.phone)} as soon as a spot opens
-          for {treatment.label}.
-        </p>
-      </div>
-    );
-  }
 
   const fieldClass = (k: keyof Fields) => (errors[k] ? "border-red-400 focus-visible:ring-red-300" : "");
   const err = (k: keyof Fields) =>
