@@ -7,10 +7,9 @@ import { TimeSlotPicker } from "@/components/booking/TimeSlotPicker";
 import { BookingForm } from "@/components/booking/BookingForm";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { TreatmentConfig } from "@/config/treatments";
-import { useEffect, useState } from "react";
-import { WaitlistForm } from "@/components/booking/WaitlistForm";
-import { useNext7Availability } from "@/hooks/useNext7Availability";
+import { useEffect } from "react";
 import { BRAND_NAME } from "@/config/brand";
+import { WaitlistPrompt } from "@/components/booking/WaitlistPrompt";
 
 interface BookingPageProps {
   treatment: TreatmentConfig;
@@ -20,18 +19,12 @@ const BookingPage = ({ treatment }: BookingPageProps) => {
   const navigate = useNavigate();
   const isMobile = useIsMobile();
   const booking = useAcuityBooking(undefined, isMobile, treatment);
-  const nextWeek = useNext7Availability(treatment.appointmentTypeId, treatment.calendarId);
-  const [showCalendarAnyway, setShowCalendarAnyway] = useState(false);
-  // Waitlist ONLY when the check confirms zero slots in the next 7 days.
-  const showWaitlist = nextWeek.status === "unavailable" && !showCalendarAnyway;
-  const isCheckingWeek = nextWeek.status === "loading" && !showCalendarAnyway;
 
   useEffect(() => {
     document.title = `${BRAND_NAME} | Book ${treatment.label}`;
   }, [treatment.label]);
 
   const getStepTitle = () => {
-    if (showWaitlist) return "Join the Waitlist";
     switch (booking.currentStep) {
       case "date":
         return "Select a Date";
@@ -46,8 +39,7 @@ const BookingPage = ({ treatment }: BookingPageProps) => {
     }
   };
 
-  const canGoBack =
-    !showWaitlist && booking.currentStep !== "date" && booking.currentStep !== "datetime";
+  const canGoBack = booking.currentStep !== "date" && booking.currentStep !== "datetime";
 
   return (
     <div dir="ltr" className="min-h-screen bg-gradient-to-br from-pink-50 via-white to-rose-50 flex flex-col">
@@ -88,22 +80,13 @@ const BookingPage = ({ treatment }: BookingPageProps) => {
       {/* Main Content */}
       <main className="flex-1 container mx-auto px-5 py-6">
         <div className="max-w-4xl mx-auto bg-white rounded-xl shadow-lg shadow-pink-100/50 overflow-hidden">
-          {isCheckingWeek ? (
-            <div className="flex items-center justify-center py-24" aria-label="Checking availability">
-              <Loader2 className="h-6 w-6 animate-spin text-pink-500" />
-            </div>
-          ) : showWaitlist ? (
-            <WaitlistForm
-              treatment={treatment}
-              onViewLaterDates={() => setShowCalendarAnyway(true)}
-              onSlotsAvailable={() => { setShowCalendarAnyway(true); nextWeek.refetch(); }}
-            />
-          ) : (
-          <>
           {booking.bookingError && (booking.currentStep === "time" || booking.currentStep === "datetime") && (
             <p className="m-4 rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-600 text-center">
               {booking.bookingError}
             </p>
+          )}
+          {(booking.currentStep === "date" || booking.currentStep === "datetime") && (
+            <WaitlistPrompt treatment={treatment} className="m-4 mb-0" />
           )}
           {booking.currentStep === "date" && (
             <BookingCalendar
@@ -193,8 +176,6 @@ const BookingPage = ({ treatment }: BookingPageProps) => {
               )}
             </Button>
           </div>
-          </>
-          )}
         </div>
       </main>
     </div>
