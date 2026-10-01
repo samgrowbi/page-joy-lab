@@ -6,6 +6,7 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import ThankYou from "./pages/ThankYou";
+import WaitlistThankYou from "./pages/WaitlistThankYou";
 
 import BookLedCryo from "./pages/BookLedCryo";
 import BookLed from "./pages/BookLed";
@@ -36,6 +37,7 @@ const App = () => (
           <Route path="/book/led-cryo" element={<BookLedCryo />} />
           <Route path="/book/body-sculpting" element={<BookBodySculpting />} />
           <Route path="/thank-you" element={<ThankYou />} />
+          <Route path="/waitlist-thank-you" element={<WaitlistThankYou />} />
           <Route path="/auth" element={<Auth />} />
           <Route path="/admin" element={<Admin />} />
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
