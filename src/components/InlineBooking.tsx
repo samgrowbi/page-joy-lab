@@ -8,13 +8,22 @@ import { TimeSlotPicker } from "./booking/TimeSlotPicker";
 import { BookingForm } from "./booking/BookingForm";
 import { useIsMobile } from "@/hooks/use-mobile";
 import { useTreatment } from "@/context/TreatmentContext";
+import { useState } from "react";
+import { WaitlistForm } from "./booking/WaitlistForm";
+import { useNext7Availability } from "@/hooks/useNext7Availability";
 
 export function InlineBooking() {
   const isMobile = useIsMobile();
   const treatment = useTreatment();
   const booking = useAcuityBooking(undefined, isMobile, treatment);
+  const nextWeek = useNext7Availability(treatment.appointmentTypeId, treatment.calendarId);
+  const [showCalendarAnyway, setShowCalendarAnyway] = useState(false);
+  // Waitlist ONLY when the check confirms zero slots in the next 7 days.
+  const showWaitlist = nextWeek.status === "unavailable" && !showCalendarAnyway;
+  const isCheckingWeek = nextWeek.status === "loading" && !showCalendarAnyway;
 
   const getStepTitle = () => {
+    if (showWaitlist) return "Join the Waitlist";
     switch (booking.currentStep) {
       case "date":
         return "Select a Date";
@@ -29,7 +38,8 @@ export function InlineBooking() {
     }
   };
 
-  const canGoBack = booking.currentStep !== "date" && booking.currentStep !== "datetime";
+  const canGoBack =
+    !showWaitlist && booking.currentStep !== "date" && booking.currentStep !== "datetime";
 
   return (
     <motion.div
@@ -78,6 +88,18 @@ export function InlineBooking() {
 
         {/* Content */}
         <div className="min-h-[320px]">
+          {isCheckingWeek ? (
+            <div className="flex items-center justify-center py-24" aria-label="Checking availability">
+              <Loader2 className="h-6 w-6 animate-spin text-pink-500" />
+            </div>
+          ) : showWaitlist ? (
+            <WaitlistForm
+              treatment={treatment}
+              onViewLaterDates={() => setShowCalendarAnyway(true)}
+              onSlotsAvailable={() => { setShowCalendarAnyway(true); nextWeek.refetch(); }}
+            />
+          ) : (
+          <>
           {booking.bookingError && (booking.currentStep === "time" || booking.currentStep === "datetime") && (
             <p className="m-3 lg:m-4 rounded-lg bg-red-50 border border-red-200 p-3 text-xs lg:text-sm text-red-600 text-center">
               {booking.bookingError}
@@ -142,10 +164,12 @@ export function InlineBooking() {
               isSubmitting={booking.isBooking}
             />
           )}
+          </>
+          )}
         </div>
 
         {/* Footer */}
-        {(booking.currentStep === "date" || booking.currentStep === "details") && (
+        {!showWaitlist && !isCheckingWeek && (booking.currentStep === "date" || booking.currentStep === "details") && (
           <div className="px-3 py-2.5 lg:px-5 lg:py-4 border-t bg-gray-50">
             {booking.bookingError && (
               <p className="text-xs lg:text-sm text-red-600 mb-2 text-center">{booking.bookingError}</p>
