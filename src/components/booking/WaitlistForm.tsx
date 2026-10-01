@@ -12,7 +12,7 @@ import { WAITLIST_MAX_DAYS_AHEAD, WAITLIST_TIME_OPTIONS } from "@/config/waitlis
 interface WaitlistFormProps {
   treatment: TreatmentConfig;
   /** Lets the visitor skip the waitlist and book a date beyond the next 7 days. */
-  onViewLaterDates: () => void;
+  onViewLaterDates?: () => void;
   /** Called if the server finds a slot opened up while they were filling the form. */
   onSlotsAvailable: () => void;
 }
@@ -218,10 +218,12 @@ export function WaitlistForm({ treatment, onViewLaterDates, onSlotsAvailable }: 
               className="w-full h-12 bg-pink-500 hover:bg-pink-600 text-white text-base">
               {submitting ? <><Loader2 className="h-4 w-4 animate-spin mr-2" />Joining…</> : "Join the waitlist"}
             </Button>
-            <button type="button" onClick={onViewLaterDates}
-              className="text-sm text-pink-600 hover:text-pink-700 underline underline-offset-4">
-              Or book a date after the next 7 days
-            </button>
+            {onViewLaterDates && (
+              <button type="button" onClick={onViewLaterDates}
+                className="text-sm text-pink-600 hover:text-pink-700 underline underline-offset-4">
+                Or book a date after the next 7 days
+              </button>
+            )}
           </div>
         </form>
       </div>
