@@ -7,9 +7,7 @@ import { BookingCalendar } from "./booking/BookingCalendar";
 import { TimeSlotPicker } from "./booking/TimeSlotPicker";
 import { BookingForm } from "./booking/BookingForm";
 import { useIsMobile } from "@/hooks/use-mobile";
-import { useState } from "react";
-import { WaitlistForm } from "./booking/WaitlistForm";
-import { useNext7Availability } from "@/hooks/useNext7Availability";
+import { WaitlistPrompt } from "./booking/WaitlistPrompt";
 
 interface BookingDialogProps {
   isOpen: boolean;
@@ -20,14 +18,8 @@ export function BookingDialog({ isOpen, onClose }: BookingDialogProps) {
   const isMobile = useIsMobile();
   const treatment = useTreatment();
   const booking = useAcuityBooking(onClose, isMobile, treatment);
-  const nextWeek = useNext7Availability(treatment.appointmentTypeId, treatment.calendarId);
-  const [showCalendarAnyway, setShowCalendarAnyway] = useState(false);
-  // Waitlist ONLY when the check confirms zero slots in the next 7 days.
-  const showWaitlist = nextWeek.status === "unavailable" && !showCalendarAnyway;
-  const isCheckingWeek = nextWeek.status === "loading" && !showCalendarAnyway;
 
   const getStepTitle = () => {
-    if (showWaitlist) return "Join the Waitlist";
     switch (booking.currentStep) {
       case "date":
         return "Select a Date";
@@ -42,8 +34,7 @@ export function BookingDialog({ isOpen, onClose }: BookingDialogProps) {
     }
   };
 
-  const canGoBack =
-    !showWaitlist && booking.currentStep !== "date" && booking.currentStep !== "datetime";
+  const canGoBack = booking.currentStep !== "date" && booking.currentStep !== "datetime";
 
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
@@ -73,22 +64,13 @@ export function BookingDialog({ isOpen, onClose }: BookingDialogProps) {
         </DialogHeader>
 
         <div className="flex-1 min-h-0 overflow-y-auto">
-          {isCheckingWeek ? (
-            <div className="flex items-center justify-center py-24" aria-label="Checking availability">
-              <Loader2 className="h-6 w-6 animate-spin text-pink-500" />
-            </div>
-          ) : showWaitlist ? (
-            <WaitlistForm
-              treatment={treatment}
-              onViewLaterDates={() => setShowCalendarAnyway(true)}
-              onSlotsAvailable={() => { setShowCalendarAnyway(true); nextWeek.refetch(); }}
-            />
-          ) : (
-          <>
           {booking.bookingError && (booking.currentStep === "time" || booking.currentStep === "datetime") && (
             <p className="mx-4 mt-4 rounded-lg bg-red-50 border border-red-200 p-3 text-sm text-red-600 text-center">
               {booking.bookingError}
             </p>
+          )}
+          {(booking.currentStep === "date" || booking.currentStep === "datetime") && (
+            <WaitlistPrompt treatment={treatment} className="mx-4 mt-4" />
           )}
           {/* Mobile: Date step */}
           {booking.currentStep === "date" && (
@@ -153,12 +135,10 @@ export function BookingDialog({ isOpen, onClose }: BookingDialogProps) {
               isSubmitting={booking.isBooking}
             />
           )}
-          </>
-          )}
         </div>
 
         {/* Footer with navigation */}
-        {!showWaitlist && !isCheckingWeek && (booking.currentStep === "date" || booking.currentStep === "details") && (
+        {(booking.currentStep === "date" || booking.currentStep === "details") && (
           <div className="p-4 border-t bg-gray-50 shrink-0">
             {booking.bookingError && (
               <p className="text-sm text-red-600 mb-3 text-center">{booking.bookingError}</p>
